@@ -1,0 +1,5 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+import:
+  - ~/.config/alacritty/themes/index.yaml
+
