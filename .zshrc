@@ -41,3 +41,20 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=/home/deusprox/.dotfiles/ --work-tree=/home/deusprox/'
 
+# Load NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
+# Load Cargo
+. "$HOME/.cargo/env"
+
+# Load Alacritty
+source ~/.bash_completion/alacritty
+
+# Open pdf files directly by their name/path
+alias -s pdf='open'
+
