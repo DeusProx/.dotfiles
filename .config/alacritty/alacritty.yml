@@ -3,3 +3,6 @@
 import:
   - ~/.config/alacritty/themes/index.yaml
 
+scrolling:
+  multiplier: 5
+  faux-multiplier: 5
