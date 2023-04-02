@@ -58,3 +58,5 @@ source ~/.bash_completion/alacritty
 # Open pdf files directly by their name/path
 alias -s pdf='open'
 
+# Shows sources for packages if command is not found
+source /etc/zsh_command_not_found
