@@ -62,5 +62,5 @@ alias -s pdf='open'
 source /etc/zsh_command_not_found
 
 # Load Aliases
-source $ZDOTDIR/aliases/*
+source <(cat $ZDOTDIR/aliases/*)
 

@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+# Use Neovim
+alias v='nvim'
+alias nv='nvim'
+alias vi='nvim'
+alias vim='nvim'
+
