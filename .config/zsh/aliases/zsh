@@ -1,1 +1,22 @@
+#!/bin/zsh
+# This files contains my general aliases for zsh
+
+# reload zsh configuration
 alias reload='exec zsh'
+
+# easier directory handling
+alias ~='cd ~'
+
+ddot='..'
+path='..'
+
+for i ({1..9})
+do
+  alias "$ddot"="cd $path"
+  alias "..$i"="cd $path"
+  ddot+='.'
+  path+='/..'
+done
+
+unset ddot path i
+
