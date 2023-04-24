@@ -14,8 +14,9 @@ for i ({1..9})
 do
   alias "$ddot"="cd $path"
   alias "..$i"="cd $path"
-  ddot+='.'
-  path+='/..'
+
+  ddot="$ddot."
+  path="$path/.."
 done
 
 unset ddot path i
