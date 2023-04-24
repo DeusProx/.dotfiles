@@ -3,6 +3,16 @@
 import:
   - ~/.config/alacritty/themes/index.yaml
 
+window:
+  startup_mode: Maximized
+  decorations: none
+
 scrolling:
   multiplier: 5
   faux-multiplier: 5
+
+key_bindings:
+  - { key: F9, action: Minimize }
+  - { key: F10, action: ToggleMaximized }
+  - { key: F11, action: ToggleFullscreen }
+
