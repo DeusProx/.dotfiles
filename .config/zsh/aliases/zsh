@@ -8,16 +8,16 @@ alias reload='exec zsh'
 alias ~='cd ~'
 
 ddot='..'
-path='..'
+ddotPath='..'
 
 for i ({1..9})
 do
-  alias "$ddot"="cd $path"
-  alias "..$i"="cd $path"
+  alias "$ddot"="cd $ddotPath"
+  alias "..$i"="cd $ddotPath"
 
   ddot="$ddot."
-  path="$path/.."
+  ddotPath="$ddotPath/.."
 done
 
-unset ddot path i
+unset ddot ddotPath i
 
