@@ -1,0 +1,12 @@
+#!/bin/zsh
+# This files contains git aliases
+
+alias g='git'
+
+alias gs='git status'
+alias gf='git fetch'
+alias gp='git pull'
+alias gc='git commit'
+
+alias gd='git diff'
+
