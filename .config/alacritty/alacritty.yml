@@ -6,6 +6,7 @@ import:
 window:
   startup_mode: Maximized
   decorations: none
+  dynamic_padding: true
 
 scrolling:
   multiplier: 5
@@ -15,4 +16,5 @@ key_bindings:
   - { key: F9, action: Minimize }
   - { key: F10, action: ToggleMaximized }
   - { key: F11, action: ToggleFullscreen }
+#   - { key: F12, action: ToggleDecorations } # This is not a feature of alacritty yet 
 
