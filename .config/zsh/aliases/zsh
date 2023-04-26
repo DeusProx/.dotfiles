@@ -2,7 +2,7 @@
 # This files contains my general aliases for zsh
 
 # reload zsh configuration
-alias reload='exec zsh'
+alias reload-zsh='exec zsh'
 
 # extend directory handling
 setopt auto_cd            # automatically triggers change directory command when path was provided instead of a command, `~/downloads` executes `cd ~/downloads`
