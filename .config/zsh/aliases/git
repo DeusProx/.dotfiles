@@ -13,3 +13,8 @@ alias gd='git diff'
 # worktree
 alias gw='git wortktree'
 alias gwl='git worktree list'
+
+# TODO: add comment and alias to add (remote) branch as new worktree (while branching)
+# git worktree add --track -b <branch-name> <dir-name> <remote>/<base-branch-name>
+# TODO: add comment and alias to clone repository with greater worktree support
+
