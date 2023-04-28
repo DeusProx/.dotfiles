@@ -10,3 +10,6 @@ alias gc='git commit'
 
 alias gd='git diff'
 
+# worktree
+alias gw='git wortktree'
+alias gwl='git worktree list'
