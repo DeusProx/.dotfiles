@@ -1,0 +1,23 @@
+{
+  "editor.tabSize": 2,
+  "editor.rulers": [
+    80,
+    120,
+    140
+  ],
+  "editor.renderWhitespace": "all",
+
+  "typescript.preferences.quoteStyle": "single",
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  "git.mergeEditor": false,
+  "git.openRepositoryInParentFolders": "always",
+  "gitlens.hovers.currentLine.over": "line",
+
+  "task.allowAutomaticTasks": "off",
+
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.startupEditor": "none"
+}
