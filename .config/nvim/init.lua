@@ -14,6 +14,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+  -- theme: tokyonight
   {
     'folke/tokyonight.nvim',
     lazy = false,
@@ -27,9 +28,11 @@ require('lazy').setup({
       -- vim.cmd([[colorscheme tokyonight-moon]])
     end,
   },
+
+  -- helps showing identation level
   { 'lukas-reineke/indent-blankline.nvim' },
 
-  -- tree-sitter
+  -- tree-sitter - incremental parser for buffer
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -107,9 +110,52 @@ require('lazy').setup({
     end,
 
   },
+
+  -- collection of lsp (language server protocol) configs
+  { 'neovim/nvim-lspconfig' },
+
+  -- mason - package manager for neovim
+  --   installs & manages ...
+  --   - lsp (language server protocol) servers
+  --   - dap (debug adapter protocol) servers
+  --   - linters
+  --   - formatters
+  {
+    'williamboman/mason.nvim',
+    config = function()
+      require('mason').setup()
+    end,
+  },
+  -- bridge between lspconfig and mason
+  --   helps with advanced installation features
+  {
+    'williamboman/mason-lspconfig.nvim',
+    config = function()
+      require('mason-lspconfig').setup({
+        ensure_installed = {
+          'lua_ls',
+          'tsserver',
+          'rust_analyzer',
+          'wgsl_analyzer',
+          'jsonls',
+          'html'
+        }
+      })
+    end,
+  },
 })
 
 require('indent_blankline').setup({
   space_char_blankline = ' ',
 })
+
+-- Actually load the damn lsp servers
+--   still quite unsure why I have to do that manually after these mason shenanigans
+--   https://imgflip.com/i/7k4h3c
+require('lspconfig').lua_ls.setup {}
+require('lspconfig').tsserver.setup {}
+require('lspconfig').rust_analyzer.setup {}
+require('lspconfig').wgsl_analyzer.setup {}
+require('lspconfig').jsonls.setup {}
+require('lspconfig').html.setup {}
 
