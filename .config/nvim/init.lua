@@ -18,19 +18,7 @@ require('lazy').setup({
   { import = 'plugin' },
 
   -- theme: tokyonight
-  {
-    'folke/tokyonight.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- load the colorscheme here
-      -- vim.cmd([[colorscheme tokyonight]])
-      vim.cmd([[colorscheme tokyonight-night]])
-      -- vim.cmd([[colorscheme tokyonight-storm]])
-      -- vim.cmd([[colorscheme tokyonight-day]])
-      -- vim.cmd([[colorscheme tokyonight-moon]])
-    end,
-  },
+  { 'folke/tokyonight.nvim' },
 
   -- help with detection of filetypes
   { 'nathom/filetype.nvim' },
@@ -168,4 +156,14 @@ require('lspconfig').rust_analyzer.setup {}
 require('lspconfig').wgsl_analyzer.setup {}
 require('lspconfig').jsonls.setup {}
 require('lspconfig').html.setup {}
+
+require('tokyonight').setup({
+  style = 'night',
+  transparent = true,
+  styles = {
+    sidebars = 'transparent',
+    floats = 'transparent',
+  }
+})
+vim.cmd.colorscheme('tokyonight')
 
