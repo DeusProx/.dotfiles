@@ -20,9 +20,6 @@ require('lazy').setup({
   -- theme: tokyonight
   { 'folke/tokyonight.nvim' },
 
-  -- help with detection of filetypes
-  { 'nathom/filetype.nvim' },
-
   -- helps showing identation level
   { 'lukas-reineke/indent-blankline.nvim' },
 
