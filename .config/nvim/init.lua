@@ -31,8 +31,11 @@ require('lazy').setup({
 
   -- help with detection of filetypes
   { 'nathom/filetype.nvim' },
+
   -- helps showing identation level
   { 'lukas-reineke/indent-blankline.nvim' },
+
+  { 'echasnovski/mini.trailspace', version = false },
 
   -- tree-sitter - incremental parser for buffer
   {
@@ -151,6 +154,8 @@ require('indent_blankline').setup({
   space_char_blankline = ' ',
 })
 
+require('mini.trailspace').setup()
+
 -- Actually load the damn lsp servers
 --   still quite unsure why I have to do that manually after these mason shenanigans
 --   https://imgflip.com/i/7k4h3c
@@ -160,3 +165,4 @@ require('lspconfig').rust_analyzer.setup {}
 require('lspconfig').wgsl_analyzer.setup {}
 require('lspconfig').jsonls.setup {}
 require('lspconfig').html.setup {}
+
