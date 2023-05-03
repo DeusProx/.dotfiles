@@ -23,6 +23,10 @@ require('lazy').setup({
   -- helps showing identation level
   { 'lukas-reineke/indent-blankline.nvim' },
 
+  -- helps undoing unwanted changes
+  { 'mbbill/undotree' },
+
+  -- shows trailing white spaces
   { 'echasnovski/mini.trailspace', version = false },
 
   -- tree-sitter - incremental parser for buffer
@@ -103,6 +107,7 @@ require('lazy').setup({
     end,
 
   },
+  { 'nvim-treesitter/playground'},
 
   -- collection of lsp (language server protocol) configs
   { 'neovim/nvim-lspconfig' },
@@ -136,6 +141,9 @@ require('lazy').setup({
       })
     end,
   },
+
+  -- offers git support
+  { 'tpope/vim-fugitive' },
 })
 
 require('indent_blankline').setup({
