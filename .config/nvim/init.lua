@@ -14,6 +14,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+  -- import plugins from ~/.config/nvim/lua/plugin/*
+  { import = 'plugin' },
+
   -- theme: tokyonight
   {
     'folke/tokyonight.nvim',
