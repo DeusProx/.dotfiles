@@ -1,4 +1,5 @@
 {
+  "filetype.nvim": { "branch": "main", "commit": "b522628a45a17d58fc0073ffd64f9dc9530a8027" },
   "indent-blankline.nvim": { "branch": "master", "commit": "018bd04d80c9a73d399c1061fa0c3b14a7614399" },
   "lazy.nvim": { "branch": "main", "commit": "bb5cc9ef3bbb17541929b745f74551c900188099" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "43f2ddf0b5f544d9bb20e24b8ff76b79f2a07ab0" },

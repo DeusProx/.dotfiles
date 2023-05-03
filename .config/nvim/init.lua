@@ -29,6 +29,8 @@ require('lazy').setup({
     end,
   },
 
+  -- help with detection of filetypes
+  { 'nathom/filetype.nvim' },
   -- helps showing identation level
   { 'lukas-reineke/indent-blankline.nvim' },
 
@@ -158,4 +160,3 @@ require('lspconfig').rust_analyzer.setup {}
 require('lspconfig').wgsl_analyzer.setup {}
 require('lspconfig').jsonls.setup {}
 require('lspconfig').html.setup {}
-
