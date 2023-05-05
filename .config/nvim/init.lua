@@ -247,6 +247,9 @@ require('lspconfig').jsonls.setup {
 require('lspconfig').html.setup {
   capabilities = capabilities
 }
+--require('lspconfig').markdown.setup {
+--  capabilities = capabilities
+--}
 
 require('tokyonight').setup({
   style = 'night',
@@ -257,3 +260,4 @@ require('tokyonight').setup({
   }
 })
 vim.cmd.colorscheme('tokyonight')
+
