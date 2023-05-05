@@ -5,6 +5,10 @@
 vim.opt.swapfile = false
 vim.opt.backup = false
 
+-- You shall remember what I did so I can undo at any point in time
+vim.opt.undodir = os.getenv('HOME') .. '/.cache/nvim/undodir'
+vim.opt.undofile = true
+
 -- You shall provide true 24-bit colours in the terminal!
 vim.opt.termguicolors = true
 
