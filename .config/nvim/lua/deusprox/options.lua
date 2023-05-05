@@ -5,14 +5,14 @@
 vim.opt.swapfile = false
 vim.opt.backup = false
 
--- You shall use true 24-bit colours in the terminal!
+-- You shall provide true 24-bit colours in the terminal!
 vim.opt.termguicolors = true
 
--- You shall show line numbers!
+-- You shall provide line numbers and also relative ones!
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
--- You shall color certain columns so length of line can be kept short!
+-- You shall provide visible line length!
 vim.opt.colorcolumn = '80,120,140,160'
 
 -- You shall not wrap lines!
@@ -25,3 +25,11 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
+-- You shall highlight all search matches!
+vim.opt.hlsearch = true
+
+-- You shall provide an incremental search!
+vim.opt.incsearch = true
+
+-- You shall not scroll of screen, but let me still jump to top and bottom!
+vim.opt.scrolloff = 0
