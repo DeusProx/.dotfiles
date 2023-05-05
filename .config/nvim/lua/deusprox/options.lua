@@ -12,6 +12,12 @@ vim.opt.termguicolors = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+-- You shall always show the sign column!
+vim.opt.signcolumn = "yes"
+
+-- You shall not scroll of screen, but let me still jump to top and bottom!
+vim.opt.scrolloff = 0
+
 -- You shall provide visible line length!
 vim.opt.colorcolumn = '80,120,140,160'
 
@@ -31,5 +37,3 @@ vim.opt.hlsearch = true
 -- You shall provide an incremental search!
 vim.opt.incsearch = true
 
--- You shall not scroll of screen, but let me still jump to top and bottom!
-vim.opt.scrolloff = 0
