@@ -1,4 +1,11 @@
-# nvim 
+# nvim
+
+## substitute a.k.a. find & replace
+
+* `:s/pattern/replace/g`  - current line
+* `:%s/pattern/replace/g` - current file
+* `:%s//replace/g`        - last search in current file
+
 
 ## useful commands
 
