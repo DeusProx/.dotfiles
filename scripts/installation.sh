@@ -14,7 +14,10 @@ sudo apt-get install software-properties-common
 ## Add the actual repositories
 sudo add-apt-repository ppa:neovim-ppa/unstable
 
-## Finally add applications from repositories 
+## Finally add applications from repositories
 sudo apt-get update
 sudo apt-get install neovim
+
+## neovim plugins
+sudo apt-get install ripgrep
 
