@@ -61,6 +61,10 @@ alias -s pdf='open'
 # Shows sources for packages if command is not found
 source /etc/zsh_command_not_found
 
+# Set nvim as default editor
+#   `sudo -e <filepath>` to edit file in nvim with root privileges
+export EDITOR=nvim
+
 # Load Aliases
 for conf in $ZDOTDIR/aliases/*; do source $conf; done
 unset conf
