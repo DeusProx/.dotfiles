@@ -65,7 +65,7 @@ source /etc/zsh_command_not_found
 #   `sudo -e <filepath>` to edit file in nvim with root privileges
 export EDITOR=nvim
 
-# Set
+# Set terminal type
 export TERM='screen-256color'
 
 # Load Aliases
