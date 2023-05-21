@@ -23,6 +23,7 @@ require('lazy').setup({
   -- better escape handling
   --   e.g. provides 'jk' & 'jj' to escape
   { 'max397574/better-escape.nvim' },
+
   -- helps showing identation level
   { 'lukas-reineke/indent-blankline.nvim' },
 
@@ -110,7 +111,8 @@ require('lazy').setup({
     end,
 
   },
-  { 'nvim-treesitter/playground'},
+  { 'nvim-treesitter/playground' },
+  { 'windwp/nvim-ts-autotag' }, -- adds autoclose and autorename for html tags to treesitter
 
   -- mason - package manager for neovim
   --   installs & manages ...
@@ -162,7 +164,10 @@ require('lazy').setup({
   { 'tpope/vim-fugitive' },
 })
 
+require('nvim-ts-autotag').setup()
+
 require('better_escape').setup()
+
 require('indent_blankline').setup({
   space_char_blankline = ' ',
 })
