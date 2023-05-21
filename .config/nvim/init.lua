@@ -20,6 +20,9 @@ require('lazy').setup({
   -- theme: tokyonight
   { 'folke/tokyonight.nvim' },
 
+  -- better escape handling
+  --   e.g. provides 'jk' & 'jj' to escape
+  { 'max397574/better-escape.nvim' },
   -- helps showing identation level
   { 'lukas-reineke/indent-blankline.nvim' },
 
@@ -156,6 +159,7 @@ require('lazy').setup({
   { 'tpope/vim-fugitive' },
 })
 
+require('better_escape').setup()
 require('indent_blankline').setup({
   space_char_blankline = ' ',
 })
@@ -268,4 +272,3 @@ require('tokyonight').setup({
   }
 })
 vim.cmd.colorscheme('tokyonight')
-
