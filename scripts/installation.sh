@@ -20,4 +20,7 @@ sudo apt-get install neovim
 
 ## neovim plugins
 sudo apt-get install ripgrep
+sudo apt install fd-find
+npm install -g tree-sitter-cli
+# cargo install tree-sitter-cli # alternative to previous line
 
