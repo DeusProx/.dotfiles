@@ -112,9 +112,6 @@ require('lazy').setup({
   },
   { 'nvim-treesitter/playground'},
 
-  -- collection of lsp (language server protocol) configs
-  { 'neovim/nvim-lspconfig' },
-
   -- mason - package manager for neovim
   --   installs & manages ...
   --   - lsp (language server protocol) servers
@@ -145,6 +142,9 @@ require('lazy').setup({
       })
     end,
   },
+
+  -- collection of lsp (language server protocol) configs
+  { 'neovim/nvim-lspconfig' },
 
   -- autocompletion
   --   completion engine
