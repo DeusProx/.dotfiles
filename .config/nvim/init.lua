@@ -27,6 +27,9 @@ require('lazy').setup({
   -- helps showing identation level
   { 'lukas-reineke/indent-blankline.nvim' },
 
+  -- shows the colorcolumns as characters
+  { 'lukas-reineke/virt-column.nvim' },
+
   -- helps undoing unwanted changes
   { 'mbbill/undotree' },
 
@@ -171,6 +174,7 @@ require('better_escape').setup()
 require('indent_blankline').setup({
   space_char_blankline = ' ',
 })
+require('virt-column').setup()
 
 require('mini.trailspace').setup()
 
