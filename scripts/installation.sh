@@ -22,5 +22,6 @@ sudo apt-get install neovim
 sudo apt-get install ripgrep
 sudo apt install fd-find
 npm install -g tree-sitter-cli
+npm install -g neovim
 # cargo install tree-sitter-cli # alternative to previous line
 
