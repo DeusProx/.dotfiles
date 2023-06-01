@@ -41,3 +41,10 @@ vim.opt.hlsearch = true
 -- You shall provide an incremental search!
 vim.opt.incsearch = true
 
+-- You shall show diagnostics in a floating window instead of inline text
+vim.diagnostic.config({
+  virtual_text = false
+})
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
