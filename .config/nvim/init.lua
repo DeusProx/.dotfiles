@@ -165,6 +165,7 @@ require('lazy').setup({
 
   -- offers git support
   { 'tpope/vim-fugitive' },
+  { 'lewis6991/gitsigns.nvim' },
 })
 
 require('nvim-ts-autotag').setup()
@@ -272,6 +273,20 @@ require('lspconfig').marksman.setup {
   capabilities = capabilities
 }
 
+require('gitsigns').setup({
+  signcolumn = true,
+  numhel = false,
+  linehl = false,
+  word_diff = true,
+  current_line_blame = true,
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol',
+    delay = 0,
+    ignore_whitespace = true,
+  },
+})
+
 require('tokyonight').setup({
   style = 'night',
   transparent = true,
@@ -281,3 +296,4 @@ require('tokyonight').setup({
   }
 })
 vim.cmd.colorscheme('tokyonight')
+
