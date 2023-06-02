@@ -142,6 +142,7 @@ require('lazy').setup({
           'wgsl_analyzer',
           'jsonls',
           'html',
+          'cssls',
           'marksman',
         }
       })
@@ -269,6 +270,10 @@ require('lspconfig').jsonls.setup {
 require('lspconfig').html.setup {
   capabilities = capabilities
 }
+require('lspconfig').cssls.setup {
+  capabilities = capabilities
+}
+
 require('lspconfig').marksman.setup {
   capabilities = capabilities
 }
