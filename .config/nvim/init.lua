@@ -115,9 +115,14 @@ require('lazy').setup({
 
   },
   { 'nvim-treesitter/playground' },
+
+  -- html
   { 'windwp/nvim-ts-autotag' }, -- adds autoclose and autorename for html tags to treesitter
-  { 'ziontee113/color-picker.nvim' }, -- adds  color picker ability for css
-  { 'nvim-colortils/colortils.nvim' }, -- adds  color picker ability for css
+
+  -- css
+  { 'ziontee113/color-picker.nvim' }, -- adds color picker ability for css
+  { 'nvim-colortils/colortils.nvim' }, -- adds color picker ability for css
+  { 'brenoprata10/nvim-highlight-colors' }, -- highlights css values for colors with the color itself
 
   -- mason - package manager for neovim
   --   installs & manages ...
@@ -174,6 +179,7 @@ require('lazy').setup({
 require('nvim-ts-autotag').setup()
 require('color-picker').setup()
 require('colortils').setup()
+require('nvim-highlight-colors').setup {}
 
 require('better_escape').setup()
 
