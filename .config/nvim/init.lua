@@ -36,6 +36,12 @@ require('lazy').setup({
   -- shows trailing white spaces
   { 'echasnovski/mini.trailspace', version = false },
 
+  -- appearance --
+
+  -- statusline
+  -- { 'nvim-lualine/lualine.nvim' },
+  { 'tamton-aquib/staline.nvim'  }, -- Also includes the tabline named 'stabline'
+
   -- icons
   { 'nvim-tree/nvim-web-devicons', lazy = true },
 
@@ -196,6 +202,25 @@ require('virt-column').setup()
 require('mini.trailspace').setup()
 
 require('nvim-web-devicons').setup()
+-- require('lualine').setup()
+require('staline').setup({ -- based on https://github.com/tamton-aquib/staline.nvim/wiki/Examples#simple-line
+  sections = {
+    left = { ' ', 'mode', '  ', 'cwd', ' ', 'branch', ' ', 'lsp' },
+    mid = { },
+    right = { 'file_name', 'line_column' }
+	},
+	-- mode_colors = {
+	--   i = "#d4be98",
+	--   n = "#84a598",
+	--   c = "#8fbf7f",
+	--   v = "#fc802d",
+	-- },
+	defaults = {
+    true_colors = true,
+    line_column = ' [%l/%L] :%c  ',
+    branch_symbol = ' 󰘬 '
+	}
+})
 
 -- nvim-cmp
 --   completion engine
