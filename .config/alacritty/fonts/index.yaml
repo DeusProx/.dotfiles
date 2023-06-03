@@ -1,0 +1,4 @@
+import:
+  - ~/.config/alacritty/fonts/agave.yaml
+  # - ~/.config/alacritty/fonts/firacode.yaml # Currently Ligatures are not supported in alacritty so we stay with agave
+
