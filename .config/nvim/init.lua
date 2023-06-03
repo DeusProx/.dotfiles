@@ -36,6 +36,9 @@ require('lazy').setup({
   -- shows trailing white spaces
   { 'echasnovski/mini.trailspace', version = false },
 
+  -- icons
+  { 'nvim-tree/nvim-web-devicons', lazy = true },
+
   -- tree-sitter - incremental parser for buffer
   {
     'nvim-treesitter/nvim-treesitter',
@@ -189,6 +192,8 @@ require('indent_blankline').setup({
 require('virt-column').setup()
 
 require('mini.trailspace').setup()
+
+require('nvim-web-devicons').setup()
 
 -- nvim-cmp
 --   completion engine
