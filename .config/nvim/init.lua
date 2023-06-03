@@ -166,6 +166,8 @@ require('lazy').setup({
   --   completion engine
   { 'hrsh7th/nvim-cmp' },
   { 'hrsh7th/cmp-buffer' },
+  { 'hrsh7th/cmp-emoji' },
+  { 'chrisgrieser/cmp-nerdfont' },
   { 'hrsh7th/cmp-cmdline' },
   { 'hrsh7th/cmp-nvim-lsp' },
   { 'hrsh7th/cmp-path' },
@@ -227,7 +229,11 @@ cmp.setup({
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
     },
-    {{ name = 'buffer' }}
+    {{ name = 'buffer' }},
+    {
+      { name = 'emoji' },
+      { name = 'nerdfont' }
+    }
   )
 })
 
