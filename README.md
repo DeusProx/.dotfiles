@@ -17,9 +17,7 @@
 >
 > So be it, until true configuration is ours and thus there is no more confusion, but bliss.
 
-
 \- _In reference to the [Rifleman's creed](https://en.wikipedia.org/wiki/Rifleman%27s_Creed#Current_text)_
-
 
 ## Installation
 
