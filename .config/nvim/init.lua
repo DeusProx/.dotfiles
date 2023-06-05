@@ -328,7 +328,7 @@ require('gitsigns').setup({
   signcolumn = true,
   numhel = false,
   linehl = false,
-  word_diff = true,
+  word_diff = false,
   current_line_blame = true,
   current_line_blame_opts = {
     virt_text = true,
