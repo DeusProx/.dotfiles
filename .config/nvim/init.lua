@@ -205,9 +205,9 @@ require('nvim-web-devicons').setup()
 -- require('lualine').setup()
 require('staline').setup({ -- based on https://github.com/tamton-aquib/staline.nvim/wiki/Examples#simple-line
   sections = {
-    left = { ' ', 'mode', '  ', 'cwd', ' ', 'branch', ' ', 'lsp' },
-    mid = { },
-    right = { 'file_name', 'line_column' }
+    left = { '  ', 'mode', ' ', 'branch', ' ',  'file_name' },
+    mid = { 'lsp' },
+    right = { 'file_size' ,  'file_name', 'line_column', '  ', ' ' }
 	},
 	-- mode_colors = {
 	--   i = "#d4be98",
@@ -219,7 +219,13 @@ require('staline').setup({ -- based on https://github.com/tamton-aquib/staline.n
     true_colors = true,
     line_column = ' [%l/%L] :%c  ',
     branch_symbol = ' 󰘬 '
-	}
+	},
+  mode_icons = {
+    n = '',
+    i = '',
+    c = '',
+    v = '',
+  },
 })
 
 -- nvim-cmp
