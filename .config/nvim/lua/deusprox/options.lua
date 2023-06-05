@@ -1,11 +1,14 @@
--- See :help vim.o
 -- Apply reasonable defaults
+-- For more see :help vim.o
 
 -- You shall not create strange files!
 vim.opt.swapfile = false
 vim.opt.backup = false
 
--- You shall remember what I did so I can undo at any point in time
+-- You shall use the goddamn system clipboard!
+vim.api.nvim_set_option('clipboard', 'unnamedplus')
+
+-- You shall remember what I did so I can undo at any point in time!
 vim.opt.undodir = os.getenv('HOME') .. '/.cache/nvim/undodir'
 vim.opt.undofile = true
 
@@ -41,10 +44,10 @@ vim.opt.hlsearch = true
 -- You shall provide an incremental search!
 vim.opt.incsearch = true
 
--- You shall show diagnostics in a floating window instead of inline text
+-- You shall show diagnostics in a floating window instead of inline text!
 vim.diagnostic.config({
   virtual_text = false
 })
-vim.o.updatetime = 250
+vim.opt.updatetime = 250
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
