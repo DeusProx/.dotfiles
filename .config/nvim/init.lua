@@ -133,6 +133,14 @@ require('lazy').setup({
   { 'nvim-colortils/colortils.nvim' }, -- adds color picker ability for css
   { 'brenoprata10/nvim-highlight-colors' }, -- highlights css values for colors with the color itself
 
+  {
+    'iamcco/markdown-preview.nvim', -- previews markdown in the browser
+    lazy = false,
+    config = function()
+      vim.fn['mkdp#util#install']()
+    end,
+  },
+
   -- mason - package manager for neovim
   --   installs & manages ...
   --   - lsp (language server protocol) servers
@@ -190,7 +198,7 @@ require('lazy').setup({
 require('nvim-ts-autotag').setup()
 require('color-picker').setup()
 require('colortils').setup()
-require('nvim-highlight-colors').setup {}
+require('nvim-highlight-colors').setup()
 
 require('better_escape').setup()
 
