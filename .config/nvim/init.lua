@@ -299,6 +299,11 @@ cmp.setup.cmdline(':', {
   )
 })
 
+-- Also use diagnostics provided by lsp in insert mode
+vim.diagnostic.config({
+  update_in_insert = true,
+})
+
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
