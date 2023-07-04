@@ -72,3 +72,13 @@ export TERM='screen-256color'
 for conf in $ZDOTDIR/aliases/*; do source $conf; done
 unset conf
 
+# On start
+
+# If not in tmux run tmux
+if [ -z "$TMUX" ]; then
+  tmux && exit
+fi
+
+# Show system information and funky ascii art on opening the terminal
+cat ~/.config/neofetch/info
+
