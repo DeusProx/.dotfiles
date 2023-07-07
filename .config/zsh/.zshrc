@@ -80,5 +80,5 @@ if [ -z "$TMUX" ]; then
 fi
 
 # Show system information and funky ascii art on opening the terminal
-cat ~/.config/neofetch/info
+/usr/bin/cat ~/.config/neofetch/info
 

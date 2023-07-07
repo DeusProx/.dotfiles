@@ -24,5 +24,12 @@
 ```shell
 git clone git@github.com:DeusProx/.dotfiles.git ~/.dotfiles
 echo "gitdir: .dotfiles" > ~/.git
+./scripts/install.sh
+```
+
+## Update
+
+```shell
+./scripts/update.sh
 ```
 
