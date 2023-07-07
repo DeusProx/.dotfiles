@@ -1,8 +1,11 @@
 #!/bin/zsh
 
-# Use Neovim
+# Use Neovim!
 alias v='nvim'
 alias nv='nvim'
 alias vi='nvim'
 alias vim='nvim'
+alias nano='nvim'
 
+# Use bat instead of cat!
+alias cat='bat'

@@ -29,11 +29,16 @@ sudo apt install software-properties-common
 
 # tools
 
+## cargo tools
+cargo install alacritty    # current fav terminal; TODO: fix bash completion
+cargo install gitui        # git app for terminal
+cargo install exa          # ls with highlighting
+cargo install --locked bat # cat with highlighting
+cargo install loc          # counts lines in files
+cargo install tokei        # also counts lines in files
+
 ## tmux
 sudo apt install tmux
-
-# gitui
-cargo install gitui
 
 ## Add the actual repositories
 

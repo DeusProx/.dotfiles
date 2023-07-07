@@ -35,5 +35,6 @@ done
 unset ddot ddotPath i
 
 # list directory alias
+alias ls='exa'
 alias l='ls -lah'
 
