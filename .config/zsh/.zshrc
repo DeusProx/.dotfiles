@@ -76,7 +76,7 @@ unset conf
 
 # If not in tmux run tmux
 if [ -z "$TMUX" ]; then
-  tmux && exit
+  (tmux a || tmux) && exit
 fi
 
 # Show system information and funky ascii art on opening the terminal
