@@ -38,7 +38,8 @@ cargo install loc          # counts lines in files
 cargo install tokei        # also counts lines in files
 
 ## tmux
-sudo apt install tmux
+sudo apt install tmux \
+  entr # for tmux-autoreload plugin to watch the config file
 
 ## Add the actual repositories
 
