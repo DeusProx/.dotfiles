@@ -38,6 +38,9 @@ require('lazy').setup({
 
   -- appearance --
 
+  -- bufferline
+  { 'tomiis4/BufferTabs.nvim', lazy = false },
+
   -- statusline
   -- { 'nvim-lualine/lualine.nvim' },
   { 'tamton-aquib/staline.nvim'  }, -- Also includes the tabline named 'stabline'
@@ -210,6 +213,18 @@ require('virt-column').setup()
 require('mini.trailspace').setup()
 
 require('nvim-web-devicons').setup()
+
+require('buffertabs').setup({
+      ---@type 'row'|'column'
+    display = 'column',
+
+    ---@type 'left'|'right'|'center'
+    horizontal = 'right',
+
+    ---@type 'top'|'bottom'|'center'
+    vertical = 'center',
+})
+
 -- require('lualine').setup()
 require('staline').setup({ -- based on https://github.com/tamton-aquib/staline.nvim/wiki/Examples#simple-line
   sections = {
