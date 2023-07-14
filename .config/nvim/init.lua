@@ -38,6 +38,9 @@ require('lazy').setup({
 
   -- appearance --
 
+  -- scrollbar
+  { 'petertriho/nvim-scrollbar', lazy = true },
+
   -- bufferline
   { 'tomiis4/BufferTabs.nvim', lazy = false },
 
@@ -213,6 +216,8 @@ require('virt-column').setup()
 require('mini.trailspace').setup()
 
 require('nvim-web-devicons').setup()
+
+require('scrollbar').setup()
 
 require('buffertabs').setup({
       ---@type 'row'|'column'
