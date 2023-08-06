@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-function active_window () {
-  echo "$(window '#EEEEEE')"
-}
-
-function inactive_window () {
-  echo "$(window '#999999')"
-}
-
 function window() {
   local sep=$([[ "$5" == "l" ]] && echo "" || echo "")
   local inv_sep=$([[ "$5" == "l" ]] && echo "" || echo "" )
@@ -42,21 +34,30 @@ function wl {
   echo "$(w "$1" "$2" "l")"
 }
 
+function ip {
+  echo "$(ifconfig enp5s0 | grep 'inet ' | awk '{print $2}')"
+}
+function up {
+  echo "$(uptime | awk -F '[ ]' '{print $5}' | cut -d ',' -f 1)"
+}
+
+tmux set-window-option -g window-status-separator ''
 tmux set-window-option -g window-status-current-format "$(window '#AA44AA' '#CC88CC' '#I' ' #W' 'l')" # active window
 tmux set-window-option -g window-status-format         "$(window '#AAAAAA' '#888888' '#I' ' #W' 'l')" # inactive window
 
+tmux set-option -g status-left-length 100
+tmux set-option -g status-right-length 100
+
 # Left status bar
-tmux set -g status-left ''                 # Clear
-tmux set -ag status-left "$(wl " " "#I")" # Show a nice rocket
-tmux set -ag status-left "$(wl " " "#S")" # Show current session
+tmux set -g status-left ''                               # Clear left
+tmux set -ag status-left "$(wl " " "#S")"               # Show current session
+# tmux set -ag status-left "$(wl " " "#S")"             # Show current session
 
 # Right status bar
-tmux set -g status-right ''                                            # Clear
-tmux set -ag status-right "$(wr " " "#h")"                            # Username
-tmux set -ag status-right \
-  "$(wr "󱦂 " "#(ifconfig enp5s0 | grep 'inet ' | awk '{print \$2}')")" # Ip
-tmux set -ag status-right \
-  "$(wr "󱦟 " "#(uptime | cut -f 4-5 -d ' ' | cut -f 1 -d ',')")"       # Uptime
-tmux set -ag status-right "$(wr " " "%a,%d %b %Y")"                   # Current date
-tmux set -ag status-right "$(wr " " "%H:%M")"                         # Current time
+tmux set -g status-right ''                              # Clear right
+tmux set -ag status-right "$(wr " " "#h")"              # Username
+tmux set -ag status-right "$(wr "󱦂 " "$(ip)")"           # Ip
+tmux set -ag status-right "$(wr "󱦟 " "$(up)")"           # Uptime
+tmux set -ag status-right "$(wr " " "%a,%d %b %Y")"     # Current date
+tmux set -ag status-right "$(wr " " "%H:%M")"           # Current time
 
