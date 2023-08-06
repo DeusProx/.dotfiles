@@ -35,7 +35,8 @@ function wl {
 }
 
 function ip {
-  echo "$(ifconfig enp5s0 | grep 'inet ' | awk '{print $2}')"
+  # echo "$(ifconfig enp5s0 | grep 'inet ' | awk '{print $2}')"
+  echo "$(hostname -I | cut -d ' ' -f 1)"
 }
 function up {
   echo "$(uptime | awk -F '[ ]' '{print $5}' | cut -d ',' -f 1)"
