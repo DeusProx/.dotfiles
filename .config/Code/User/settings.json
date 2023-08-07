@@ -19,5 +19,6 @@
   "task.allowAutomaticTasks": "off",
 
   "workbench.colorTheme": "Default Dark+",
-  "workbench.startupEditor": "none"
+  "workbench.startupEditor": "none",
+  "editor.lineNumbers": "relative"
 }
