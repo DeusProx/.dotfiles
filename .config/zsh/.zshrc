@@ -41,6 +41,15 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=/home/deusprox/.dotfiles/ --work-tree=/home/deusprox/'
 
+# Load Cargo
+. "$HOME/.cargo/env"
+
+# Load Go
+if [ -z "$GOPATH" ]; then
+  export GOPATH="$HOME"/go
+  export PATH=$PATH:$GOPATH/bin
+fi
+
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -48,9 +57,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
-
-# Load Cargo
-. "$HOME/.cargo/env"
 
 # Load Alacritty
 source ~/.bash_completion/alacritty
