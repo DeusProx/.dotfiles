@@ -40,6 +40,9 @@ cargo install --locked bat # cat with highlighting
 cargo install loc          # counts lines in files
 cargo install tokei        # also counts lines in files
 
+## go tools
+go install github.com/junegunn/fzf@latest
+
 ## tmux
 sudo apt install tmux \
   entr # for tmux-autoreload plugin to watch the config file
