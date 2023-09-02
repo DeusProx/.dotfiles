@@ -15,6 +15,7 @@ sudo apt upgrade
 ## rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install cargo-update
+rustup completions zsh ~/.config/zsh/.zfunc
 
 ## go
 sudo apt install golang-go

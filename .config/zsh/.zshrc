@@ -14,6 +14,8 @@ HISTSIZE=999999999
 SAVEHIST=999999999
 HISTFILE=~/.zsh_history
 
+fpath+=~/.config/zsh/.zfunc
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
