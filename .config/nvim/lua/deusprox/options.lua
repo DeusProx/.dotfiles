@@ -51,3 +51,7 @@ vim.diagnostic.config({
 vim.opt.updatetime = 250
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
+-- You shall provide spell checks
+vim.opt.spelllang = { 'en', 'de' }
+vim.opt.spell = true
+
