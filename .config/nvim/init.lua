@@ -130,6 +130,7 @@ require('lazy').setup({
         'typescript',
         'tsx',
         'javascript',
+        'astro',
         'html',
         'css',
         'scss',
