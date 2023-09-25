@@ -1,0 +1,9 @@
+[user]
+	email = gordon@lawrenz.email
+	name = Gordon Lawrenz
+[init]
+  defaultBranch = main
+[push]
+	default = simple
+	followTags = true
+
