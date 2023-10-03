@@ -7,7 +7,7 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[f]ind [f]iles' 
 vim.keymap.set('n', '<leader>fg', builtin.git_files,  { desc = '[f]ind [g]it' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers,    { desc = '[f]ind [b]uffers' })
 vim.keymap.set('n', '<leader>fk', builtin.keymaps,    { desc = '[f]ind [k]eymaps' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags,  { desc = '[f]ind [h]elp tags' })
+vim.keymap.set('n', '<leader>flt', builtin.help_tags,  { desc = '[f]ind [l]ua [t]ags - shows lua help tags' })
 
 -- you need to have ripgrep installed
 local isRipgrepInstalled = util.isInstalled('rg')
