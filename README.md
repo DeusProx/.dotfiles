@@ -1,9 +1,3 @@
-<style>
-  blockquote {
-    text-align: center
-  }
-</style>
-
 <img align="left" width="175" src=".assets/dotfile.svg" />
 
 # **.dotfiles**
@@ -14,7 +8,7 @@ Use at your own risk.
 
 ## **.dotfiles creed**
 
-<blockquote style=text-align="center">
+<blockquote style="text-align:center;">
 
 These are my .dotfiles.
 There are many like it, but these ones are mine.
