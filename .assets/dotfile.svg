@@ -1,0 +1,26 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  id="dotfile"
+  viewBox="0 0 500 500"
+>
+  <g transform="translate(100,50)">
+    <path
+      id="file"
+      d="M 300,75 V 375 a 25,25 0 0 1 -25,25 H 25 a 25,25 0 0 1 -25,-25 V 25 a 25,25 0 0 1 25,-25 H 225"
+      style="fill:#333333"
+    />
+    <path
+      id="kink"
+      d="M 300,75 h -50 a 25,25 0 0 1 -25,-25 v -50 Z"
+      style="fill:#36a7f8"
+    />
+    <circle
+      id="dot"
+      cx="150"
+      cy="200"
+      r="40"
+      style="fill:#36a7f8"
+    />
+  </g>
+</svg>
+

@@ -1,4 +1,11 @@
+<img align="left" width="175" src=".assets/dotfile.svg" />
+
+
 # **.dotfiles**
+
+This repository contains my personal OS configuration.
+
+Use at your own risk.
 
 ## **.dotfiles creed**
 
