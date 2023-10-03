@@ -1,6 +1,8 @@
 -- Set leader prefix to space
 vim.g.mapleader = ' '
 
+vim.keymap.set('n', '<leader>fmt',   vim.lsp.buf.format,          { desc = '[f]or[m]a[t]' })
+
 vim.keymap.set('n', '<leader>fe',    vim.cmd.Ex,          { desc = '[f]ile [e]xplorer' })
 
 vim.keymap.set('n', '<leader>h',     '<cmd>bprev<CR>',    { desc = 'previous buffer - vim style' })
