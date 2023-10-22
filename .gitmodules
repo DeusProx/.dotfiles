@@ -1,3 +1,6 @@
 [submodule "notes"]
 	path = notes
 	url = git@github.com:DeusProx/notes.git
+[submodule ".config/tmux/.config/tmux/plugins/tpm"]
+	path = .config/tmux/.config/tmux/plugins/tpm
+	url = git@github.com:tmux-plugins/tpm.git
