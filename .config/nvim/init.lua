@@ -7,7 +7,7 @@ if not vim.loop.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
+    '--branch=stable',
     lazypath,
   })
 end
@@ -77,6 +77,8 @@ require('lazy').setup({
 
   -- shows the colorcolumns as characters
   { 'lukas-reineke/virt-column.nvim' },
+
+  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
 
   -- helps undoing unwanted changes
   { 'mbbill/undotree' },
@@ -258,9 +260,12 @@ require('nvim-highlight-colors').setup()
 
 require('better_escape').setup()
 
-require('indent_blankline').setup({
-  space_char_blankline = ' ',
+require('ibl').setup({
+  indent = {
+    char = '│',
+  },
 })
+
 require('virt-column').setup()
 
 require('mini.trailspace').setup()
@@ -438,4 +443,3 @@ require('tokyonight').setup({
   }
 })
 vim.cmd.colorscheme('tokyonight')
-
