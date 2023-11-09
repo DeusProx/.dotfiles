@@ -38,3 +38,7 @@ unset ddot ddotPath i
 alias ls='exa'
 alias l='ls -lah'
 
+# nicer aliases for sudo because it feels nice to be nice
+alias please='sudo'
+alias plz='sudo'
+
