@@ -231,6 +231,13 @@ require('lazy').setup({
     end,
   },
 
+  -- json schemas
+  {
+    "b0o/SchemaStore.nvim",
+    lazy = true,
+    version = false, -- last release is way too old
+  },
+
   -- collection of lsp (language server protocol) configs
   { 'neovim/nvim-lspconfig' },
 
@@ -405,7 +412,13 @@ require('lspconfig').wgsl_analyzer.setup {
   capabilities = capabilities
 }
 require('lspconfig').jsonls.setup {
-  capabilities = capabilities
+  capabilities = capabilities,
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+      validate = { enable = true },
+    }
+  },
 }
 require('lspconfig').html.setup {
   capabilities = capabilities
