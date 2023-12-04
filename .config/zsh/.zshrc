@@ -4,7 +4,10 @@ autoload -Uz promptinit
 promptinit
 prompt adam1
 
-setopt histignorealldups sharehistory
+# zsh options
+# See "man 1 zshoptions"
+setopt histignorealldups
+setopt nosharehistory
 
 # Enable vi mode
 bindkey -v
@@ -89,4 +92,3 @@ fi
 
 # Show system information and funky ascii art on opening the terminal
 /usr/bin/cat ~/.config/neofetch/info
-
