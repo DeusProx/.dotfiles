@@ -386,6 +386,16 @@ vim.diagnostic.config({
   update_in_insert = true,
 })
 
+-- Workaround which causes 100% CPU usage und blocks neovim when a lot of files are watched
+-- TODO: Check if this can be removed again
+local ok, wf = pcall(require, "vim.lsp._watchfiles")
+if ok then
+   -- disable lsp watcher. Too slow on linux
+   wf._watchfunc = function()
+     return function() end
+   end
+end
+
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
