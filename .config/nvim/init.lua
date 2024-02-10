@@ -241,6 +241,10 @@ require('lazy').setup({
   -- collection of lsp (language server protocol) configs
   { 'neovim/nvim-lspconfig' },
 
+  -- comments, because they are language dependent
+  { 'JoosepAlviste/nvim-ts-context-commentstring' },
+  { 'echasnovski/mini.comment', version = false },
+
   -- autocompletion
   --   completion engine
   { 'hrsh7th/nvim-cmp' },
@@ -442,6 +446,17 @@ require('lspconfig').eslint.setup {
 require('lspconfig').marksman.setup {
   capabilities = capabilities
 }
+
+require('ts_context_commentstring').setup({
+  enable_autocmd = false,
+})
+require('mini.comment').setup({
+    options = {
+    custom_commentstring = function()
+      return require('ts_context_commentstring').calculate_commentstring() or vim.bo.commentstring
+    end,
+  },
+})
 
 require('gitsigns').setup({
   signcolumn = true,
