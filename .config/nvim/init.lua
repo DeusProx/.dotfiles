@@ -228,6 +228,7 @@ require('lazy').setup({
           'marksman',
           'eslint',
           'volar', -- vue
+          'pyright',
         }
       })
     end,
@@ -452,6 +453,9 @@ require('lspconfig').eslint.setup {
   capabilities = capabilities
 }
 require('lspconfig').marksman.setup {
+  capabilities = capabilities
+}
+require('lspconfig').pyright.setup {
   capabilities = capabilities
 }
 
