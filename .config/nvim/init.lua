@@ -218,6 +218,7 @@ require('lazy').setup({
       require('mason-lspconfig').setup({
         ensure_installed = {
           'lua_ls',
+          'bashls',
           'tsserver',
           'rust_analyzer',
           'wgsl_analyzer',
@@ -406,6 +407,9 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Actually load the damn lsp servers
 --   still quite unsure why I have to do that manually after these mason shenanigans
 --   https://imgflip.com/i/7k4h3c
+require('lspconfig').bashls.setup {
+  capabilities = capabilities
+}
 require('lspconfig').lua_ls.setup {
   capabilities = capabilities,
   settings = {
