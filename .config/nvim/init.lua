@@ -227,6 +227,7 @@ require('lazy').setup({
           'cssls',
           'marksman',
           'eslint',
+          'volar', -- vue
         }
       })
     end,
@@ -439,6 +440,9 @@ require('lspconfig').jsonls.setup {
   },
 }
 require('lspconfig').html.setup {
+  capabilities = capabilities
+}
+require('lspconfig').volar.setup {
   capabilities = capabilities
 }
 require('lspconfig').cssls.setup {
