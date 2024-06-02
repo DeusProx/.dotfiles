@@ -474,7 +474,7 @@ require('mini.comment').setup({
 
 require('gitsigns').setup({
   signcolumn = true,
-  numhel = false,
+  numhl = false,
   linehl = false,
   word_diff = false,
   current_line_blame = true,
@@ -495,3 +495,4 @@ require('tokyonight').setup({
   }
 })
 vim.cmd.colorscheme('tokyonight')
+
