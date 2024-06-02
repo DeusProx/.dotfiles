@@ -231,9 +231,16 @@ require('lazy').setup({
           'eslint',
           'volar', -- vue
           'pyright',
+          'typst_lsp',
         }
       })
     end,
+  },
+
+  {
+    'kaarmu/typst.vim',
+    ft = 'typst',
+    lazy = false,
   },
 
   -- json schemas
@@ -459,6 +466,12 @@ require('lspconfig').marksman.setup {
 }
 require('lspconfig').pyright.setup {
   capabilities = capabilities
+}
+require('lspconfig').typst_lsp.setup {
+  capabilities = capabilities,
+  settings = {
+    exportPdf = "onType",
+  },
 }
 
 require('ts_context_commentstring').setup({

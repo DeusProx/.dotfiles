@@ -58,4 +58,7 @@ sudo apt install neovim
 sudo apt install ripgrep
 sudo apt install fd-find
 cargo install tree-sitter-cli
+cargo install typst-cli
+cargo install typst-lsp
 npm install -g neovim
+
