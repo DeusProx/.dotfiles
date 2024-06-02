@@ -76,7 +76,8 @@ require('lazy').setup({
   { 'lukas-reineke/indent-blankline.nvim' },
 
   -- shows the colorcolumns as characters
-  { 'lukas-reineke/virt-column.nvim' },
+  -- { 'lukas-reineke/virt-column.nvim' },
+  { 'DeusProx/virt-column.nvim' }, -- Fork to fix deprecated API usage
 
   { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
 
@@ -96,7 +97,8 @@ require('lazy').setup({
 
   -- statusline
   -- { 'nvim-lualine/lualine.nvim' },
-  { 'tamton-aquib/staline.nvim'  }, -- Also includes the tabline named 'stabline'
+  -- { 'tamton-aquib/staline.nvim'  }, -- Also includes the tabline named 'stabline'
+  { 'DeusProx/staline.nvim'  }, -- Fork to fix deprecated API usage
 
   -- icons
   { 'nvim-tree/nvim-web-devicons', lazy = true },
