@@ -57,7 +57,5 @@ sudo apt install neovim
 ## neovim plugins
 sudo apt install ripgrep
 sudo apt install fd-find
-npm install -g tree-sitter-cli
+cargo install tree-sitter-cli
 npm install -g neovim
-# cargo install tree-sitter-cli # alternative to previous line
-
