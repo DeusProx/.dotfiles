@@ -83,12 +83,28 @@ export TERM='screen-256color'
 for conf in $ZDOTDIR/aliases/*; do source $conf; done
 unset conf
 
-# On start
+# Compose start command
+local CMD=""
 
-# If not in tmux run tmux
-if [ -z "$TMUX" ]; then
-  (tmux a || tmux) && exit
+if [ -z "$TMUX" ]; then # If not in tmux
+
+  if [ -z "$SSH_CLIENT" ]; then
+    # Run tmux
+    CMD+="(tmux a || tmux)"
+  else
+    # Run tmux but prevent suspend
+    IP=$(echo ${SSH_CLIENT} | cut -d " " -f 1)
+    CMD+="(systemd-inhibit --what=idle --why=\"Do not suspend on open ssh connections\" --who=\"ssh (${IP})\" tmux a || tmux)"
+  fi
+
+  # Always exit after detaching from tmux
+  CMD+=" && exit"
+
+else # If in tmux
+  # Show system information and funky ascii art on opening the terminal
+  CMD+="/usr/bin/cat ~/.config/neofetch/info"
 fi
 
-# Show system information and funky ascii art on opening the terminal
-/usr/bin/cat ~/.config/neofetch/info
+# run start command
+eval "$CMD"
+
