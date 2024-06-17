@@ -96,9 +96,8 @@ require('lazy').setup({
   { 'tomiis4/BufferTabs.nvim', lazy = false },
 
   -- statusline
-  -- { 'nvim-lualine/lualine.nvim' },
-  -- { 'tamton-aquib/staline.nvim'  }, -- Also includes the tabline named 'stabline'
-  { 'DeusProx/staline.nvim'  }, -- Fork to fix deprecated API usage
+  { 'tamton-aquib/staline.nvim'  }, -- Also includes the tabline named 'stabline'
+  -- { 'DeusProx/staline.nvim'  }, -- my fork
 
   -- icons
   { 'nvim-tree/nvim-web-devicons', lazy = true },
