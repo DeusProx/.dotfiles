@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 require('deusprox')
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -507,4 +509,3 @@ require('tokyonight').setup({
   }
 })
 vim.cmd.colorscheme('tokyonight')
-
