@@ -55,6 +55,10 @@ if [ -z "$GOPATH" ]; then
   export PATH=$PATH:$GOPATH/bin
 fi
 
+# fuzzy completion and key bindings for fzf
+# is installed via go so load after go
+source <(fzf --zsh)
+
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
