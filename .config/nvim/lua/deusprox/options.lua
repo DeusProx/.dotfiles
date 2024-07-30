@@ -16,7 +16,7 @@ vim.opt.undofile = true
 vim.opt.termguicolors = true
 
 -- You shall provide line numbers and also relative ones!
-vim.opt.nu = true
+vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- You shall always show the sign column!
