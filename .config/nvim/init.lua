@@ -222,7 +222,7 @@ require('lazy').setup({
         ensure_installed = {
           'lua_ls',
           'bashls',
-          'tsserver',
+          'ts_ls',
           'rust_analyzer',
           'wgsl_analyzer',
           'jsonls',
@@ -432,7 +432,7 @@ require('lspconfig').lua_ls.setup {
     },
   },
 }
-require('lspconfig').tsserver.setup {
+require('lspconfig').ts_ls.setup {
   capabilities = capabilities
 }
 require('lspconfig').rust_analyzer.setup {
