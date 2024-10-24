@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # Use Neovim!
 alias v='nvim'
@@ -15,3 +15,4 @@ alias ev='editnvim'
 
 # Use bat instead of cat!
 alias cat='bat'
+

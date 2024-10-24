@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 # simpler commands to handle vpn connections
 vpn() {
@@ -51,3 +51,4 @@ _vpn_completion() {
 
 # bind completion function
 compdef _vpn_completion vpn
+

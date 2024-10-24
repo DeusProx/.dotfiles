@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # This files contains my general aliases for zsh
 
 # reload zsh configuration

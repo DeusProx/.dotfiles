@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # tmux
 alias reload-tmux='tmux source-file ~/.config/tmux/tmux.conf'
