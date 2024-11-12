@@ -2,8 +2,9 @@ vim.loader.enable()
 
 require('deusprox')
 
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     'git',
     'clone',
@@ -78,8 +79,8 @@ require('lazy').setup({
   { 'lukas-reineke/indent-blankline.nvim' },
 
   -- shows the colorcolumns as characters
-  -- { 'lukas-reineke/virt-column.nvim' },
-  { 'DeusProx/virt-column.nvim' }, -- Fork to fix deprecated API usage
+  { 'lukas-reineke/virt-column.nvim' },
+  -- { 'DeusProx/virt-column.nvim' }, -- Fix got merged
 
   { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
 
@@ -98,8 +99,8 @@ require('lazy').setup({
   { 'tomiis4/BufferTabs.nvim', lazy = false },
 
   -- statusline
-  { 'tamton-aquib/staline.nvim'  }, -- Also includes the tabline named 'stabline'
-  -- { 'DeusProx/staline.nvim'  }, -- my fork
+  { 'tamton-aquib/staline.nvim' }, -- Also includes the tabline named 'stabline'
+  -- { 'DeusProx/staline.nvim'  }, -- Fix got merged
 
   -- icons
   { 'nvim-tree/nvim-web-devicons', lazy = true },
