@@ -1,0 +1,7 @@
+[general]
+import = [
+  # 'nord.toml',
+  # 'tokyo-night-solarized.toml',
+  'tokyo-night.toml',
+]
+

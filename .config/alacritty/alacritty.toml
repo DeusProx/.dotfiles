@@ -1,0 +1,45 @@
+# Alacritty config
+#
+# See https://alacritty.org/config-alacritty.html
+
+[general]
+import = [
+'./fonts/index.toml',
+'./themes/index.toml',
+]
+
+[env]
+TERM = 'xterm-256color'
+
+[scrolling]
+multiplier = 5
+
+[window]
+decorations = 'none'
+dynamic_padding = true
+opacity = 0.85
+startup_mode = 'Maximized'
+
+[keyboard]
+
+[[keyboard.bindings]]
+action = 'Minimize'
+key = 'F9'
+
+[[keyboard.bindings]]
+action = 'ToggleMaximized'
+key = 'F10'
+
+[[keyboard.bindings]]
+action = 'ToggleFullscreen'
+key = 'F11'
+
+[[hints.enabled]]
+action = 'Copy'
+post_processing = false
+regex = '([[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3})|([0-9a-f]{12,128})'
+
+[hints.enabled.binding]
+key = 'U'
+mods = 'Control|Shift'
+

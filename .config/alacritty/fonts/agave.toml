@@ -1,0 +1,19 @@
+[font]
+size = 12
+
+[font.normal]
+family = 'agave nerd font'
+style = 'Regular'
+
+[font.bold]
+family = 'agave nerd font'
+style = 'bold'
+
+[font.italic]
+family = 'agave nerd font'
+style = 'Italic'
+
+[font.bold_italic]
+family = 'agave nerd font'
+style = 'Bold Italic'
+

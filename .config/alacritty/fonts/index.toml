@@ -1,0 +1,6 @@
+[general]
+import = [
+'~/.config/alacritty/fonts/agave.toml',
+# '~/.config/alacritty/fonts/firacode.toml', # Currently Ligatures are not supported in alacritty so we stay with agave
+]
+

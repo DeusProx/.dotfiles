@@ -1,5 +1,0 @@
-import:
-  # - ~/.config/alacritty/themes/nord.yaml
-  # - ~/.config/alacritty/themes/tokyo-night-solarized.yaml
-  - ~/.config/alacritty/themes/tokyo-night.yaml
-
