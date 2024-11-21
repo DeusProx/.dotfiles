@@ -421,7 +421,8 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 --   still quite unsure why I have to do that manually after these mason shenanigans
 --   https://imgflip.com/i/7k4h3c
 require('lspconfig').bashls.setup {
-  capabilities = capabilities
+  capabilities = capabilities,
+  filetypes = { "sh", "zsh" },
 }
 require('lspconfig').lua_ls.setup {
   capabilities = capabilities,
