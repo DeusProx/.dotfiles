@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+: <<'disabled'
 if typeset -f command_not_found_handler > /dev/null; then
     OLD_HANDLER=$(typeset -f command_not_found_handler)
 fi
@@ -34,4 +35,4 @@ declare -A CMD_CORRECTIONS=(
   ["hyperlock"]="hyprlock"
   ["hyperpm"]="hyprpm"
 )
-
+disabled
