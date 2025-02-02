@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for input_file in "$@"; do
+  if file --mime-type "$input_file" | grep -q 'image/png'; then
+    output_file="${input_file%.*}.jpg"
+    convert "$input_file" "${output_file}"
+    notify-send "Conversion Complete" "Saved as $output_file"
+  else
+    notify-send "Skipping Conversion" "File $input_file is not a PNG."
+  fi
+done
+
