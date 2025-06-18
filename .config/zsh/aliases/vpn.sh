@@ -1,54 +1,131 @@
 #!/usr/bin/env zsh
 
-# simpler commands to handle vpn connections
+_vpn_usage() { cat <<EOF
+vpn - the minimal vpn interface
+
+Usage:
+  'vpn'                     - list VPN profiles with status
+  'vpn --help | -h'         - show this help text
+  'vpn <profile>'           - toggle the given VPN (up ↔ down)
+  'vpn <profile> -- <cmd>'  - up, run command, down
+
+Example:
+  'vpn home -- npm install' - connects to home vpn to install packages from npm repository in home network
+EOF
+}
+
+_vpn_all()      { nmcli --terse --fields NAME,TYPE connection show          | awk -F: '$2=="vpn" {print $1}' }
+_vpn_active()   { nmcli --terse --fields NAME,TYPE connection show --active | awk -F: '$2=="vpn" {print $1}' }
+_vpn_is_up()    { _vpn_active | grep -Fxq -- "$1" }
+_vpn_is_valid() { _vpn_all    | grep -Fxq -- "$1" }
+
+_vpn_up()     { _vpn_is_up "$1"                                  || nmcli connection up id "$1" }
+_vpn_down()   { _vpn_is_up "$1" && nmcli connection down id "$1"                                }
+_vpn_toggle() { _vpn_is_up "$1" && nmcli connection down id "$1" || nmcli connection up id "$1" }
+
+_vpn_overview() {
+    local profiles=("${(@f)$(_vpn_all)}")
+    if [[ ${#profiles} -eq 0 ]]; then
+      echo "Error: no VPN profiles defined"
+      return 1
+    fi
+
+    local len=0 new_len
+    for profile in "${profiles[@]}"; do
+        new_len=${#profile}
+        if [[ $new_len -gt $len ]]; then
+            len=$new_len
+        fi
+    done
+    len=$((len+1))
+
+    local connection_state
+    printf "  %-${len}s %s\n" "VPN" "STATE"
+    for profile in "${profiles[@]}"; do
+        _vpn_is_up "$profile" && connection_state=up || connection_state=down
+        printf "  %-${len}s %s\n" "$profile" "$connection_state"
+    done
+}
+
 vpn() {
-    if [[ $# -lt 2 ]]; then
-        echo "Usage: vpn <name> <up|down>"
+    if [[ $# -eq 0 ]]; then
+        _vpn_overview
+        return
+    fi
+
+    if [[ $# -eq 1 && ( $1 == --help || $1 == -h ) ]]; then
+        _vpn_usage
+        return
+    fi
+
+    local profile=$1
+    shift
+    if ! _vpn_is_valid "$profile"; then
+        echo "Error: Unknown profile '$profile'"
         return 1
     fi
 
-    local vpn_name=$1
-    local action=$2
+    if [[ $# -eq 0 ]]; then
+        _vpn_toggle "$profile"
+        return
+    fi
 
-    if ! nmcli connection show | grep -q "^$vpn_name"; then
-        echo "Error: vpn '$vpn_name' not found."
+    if [[ $1 != -- ]]; then
+        echo "Error: expected '--' before the command"
+        echo " Hint: vpn <profile> -- <command>"
+        return 1
+    fi
+    shift
+    local command=$@
+    if [[ ! $command ]]; then
+        echo "Error: expected command after '--'"
+        echo " Hint: vpn <profile> -- <command>"
         return 1
     fi
 
-    if [[ $action == "up" ]]; then
-        nmcli connection up id "$vpn_name"
-    elif [[ $action == "down" ]]; then
-        nmcli connection down id "$vpn_name"
-    else
-        echo "Invalid action. Use 'up' or 'down'."
+    # run command within vpn
+    local command_status
+    _vpn_up "$profile" || {
+        echo "Error: could not activate to $profile"
         return 1
-    fi
+    }
+    $command
+    command_status=$?
+    vpn "$profile" down
+
+    return $command_status
 }
 
 _vpn_completion() {
     local curcontext="$curcontext" state line
     typeset -A opt_args
 
-    local -a vpn_list action_list
-
-    vpn_list=($(nmcli connection show | awk '$3=="vpn" {print $1}'))
-    action_list=(up down)
-
-    # Case to complete based on argument position
-    _arguments \
-        '1:vpn name:->vpn' \
-        '2:action:->action'
+    _arguments -C \
+        '1:VPN profile:->profile' \
+        '2:separator:->separator' \
+        '3:command:->cmd' \
+        '*:command arguments:->arguments'
 
     case $state in
-        vpn)
-            _describe -t vpn 'vpn name' vpn_list
+        profile)
+            local profiles=("${(@f)$(_vpn_all)}")
+            _describe -t profiles 'VPN profiles' profiles
+            _values -w 'flags' --help -h
             ;;
-        action)
-            _describe -t action 'action' action_list
+        separator)
+            _values -w 'separator' --
+            ;;
+        cmd)
+            _command_names -e
+            ;;
+        arguments)
+            # drop “vpn <profile> --” so only the command is left
+            shift 3 words
+            (( CURRENT -= 3 ))
+            _normal
             ;;
     esac
 }
 
-# bind completion function
 compdef _vpn_completion vpn
 
