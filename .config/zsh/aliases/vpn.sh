@@ -91,7 +91,7 @@ vpn() {
     }
     $command
     command_status=$?
-    vpn "$profile" down
+    _vpn_down "$profile"
 
     return $command_status
 }
