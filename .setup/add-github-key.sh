@@ -6,9 +6,9 @@ set -euo pipefail
 # dependencies
 # sudo pacman -Sy --noconfirm --needed git openssh github-cli inetutils
 
-WHO="$(whoami)@$(hostname)"
+WHO="github:$(whoami)@$(hostname)"
 SSH_DIR="$HOME/.ssh"
-KEY_PATH="${SSH_DIR}/git_ed25519_${WHO}"
+KEY_PATH="$SSH_DIR/id_ed25519_github"
 PUB_PATH="$KEY_PATH.pub"
 KNOWN_HOSTS_PATH="$SSH_DIR/known_hosts"
 

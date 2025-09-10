@@ -1,11 +1,14 @@
-# Set up the prompt
+# load systemd environment
+# you can extend the environment by adding files to ~/.config/environment.d/*.conf
+export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
 
+# set up the prompt
 autoload -Uz promptinit
 promptinit
 prompt adam1
 
 # zsh options
-# See "man 1 zshoptions"
+# see "man 1 zshoptions"
 setopt histignorealldups
 setopt nosharehistory
 
@@ -111,4 +114,3 @@ fi
 
 # run start command
 eval "$CMD"
-
