@@ -20,5 +20,6 @@
 
   "workbench.colorTheme": "Default Dark+",
   "workbench.startupEditor": "none",
-  "editor.lineNumbers": "relative"
+  "editor.lineNumbers": "relative",
+  "redhat.telemetry.enabled": false
 }
