@@ -27,6 +27,7 @@ require('lazy').setup({
   --   e.g. provides 'jk' & 'jj' to escape
   { 'max397574/better-escape.nvim' },
 
+  -- TODO: Do we really use this?
   {
     'folke/flash.nvim',
     event = 'VeryLazy',
@@ -82,6 +83,7 @@ require('lazy').setup({
   { 'lukas-reineke/virt-column.nvim' },
   -- { 'DeusProx/virt-column.nvim' }, -- Fix got merged
 
+  -- add indentation guides
   { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
 
   -- helps undoing unwanted changes
@@ -94,9 +96,6 @@ require('lazy').setup({
 
   -- scrollbar
   { 'petertriho/nvim-scrollbar', lazy = true },
-
-  -- bufferline
-  { 'tomiis4/BufferTabs.nvim', lazy = false },
 
   -- statusline
   { 'tamton-aquib/staline.nvim' }, -- Also includes the tabline named 'stabline'
@@ -186,12 +185,23 @@ require('lazy').setup({
   },
   { 'nvim-treesitter/playground' },
 
+  { -- TODO: Configure
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    -- https://github.com/folke/todo-comments.nvim?tab=readme-ov-file#%EF%B8%8F-configuration
+    opts = {
+      -- keywords: {
+      --   TODO: { icon: "", color: "info" },
+      -- },
+    }
+  },
+
   -- html
   { 'windwp/nvim-ts-autotag' }, -- adds autoclose and autorename for html tags to treesitter
 
   -- css
-  { 'ziontee113/color-picker.nvim' }, -- adds color picker ability for css
-  { 'nvim-colortils/colortils.nvim' }, -- adds color picker ability for css
+  { 'ziontee113/color-picker.nvim' },       -- adds color picker ability for css
+  { 'nvim-colortils/colortils.nvim' },      -- adds color picker ability for css
   { 'brenoprata10/nvim-highlight-colors' }, -- highlights css values for colors with the color itself
 
   {
@@ -220,6 +230,7 @@ require('lazy').setup({
     'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup({
+        automatic_enable = false,
         ensure_installed = {
           'lua_ls',
           'bashls',
@@ -227,13 +238,13 @@ require('lazy').setup({
           'rust_analyzer',
           'wgsl_analyzer',
           'jsonls',
+          'angularls',
           'html',
           'cssls',
           'marksman',
           'eslint',
-          'volar', -- vue
           'pyright',
-          'typst_lsp',
+          'tinymist',
         }
       })
     end,
@@ -278,10 +289,12 @@ require('lazy').setup({
   { 'lewis6991/gitsigns.nvim' },
 })
 
+-- Actually load everything
+
 require('nvim-ts-autotag').setup()
 require('color-picker').setup()
 require('colortils').setup()
-require('nvim-highlight-colors').setup()
+require('nvim-highlight-colors').setup({})
 
 require('better_escape').setup()
 
@@ -299,35 +312,25 @@ require('nvim-web-devicons').setup()
 
 require('scrollbar').setup()
 
-require('buffertabs').setup({
-      ---@type 'row'|'column'
-    display = 'column',
-
-    ---@type 'left'|'right'|'center'
-    horizontal = 'right',
-
-    ---@type 'top'|'bottom'|'center'
-    vertical = 'center',
-})
-
 -- require('lualine').setup()
 require('staline').setup({ -- based on https://github.com/tamton-aquib/staline.nvim/wiki/Examples#simple-line
   sections = {
-    left = { '  ', 'mode', ' ', 'branch', ' ',  'file_name' },
+    left = { '  ', 'mode', ' ', 'branch', ' ', 'file_name' },
     mid = { 'lsp' },
-    right = { 'file_size' ,  'file_name', 'line_column', '  ', ' ' }
-	},
-	-- mode_colors = {
-	--   i = "#d4be98",
-	--   n = "#84a598",
-	--   c = "#8fbf7f",
-	--   v = "#fc802d",
-	-- },
-	defaults = {
+    right = { 'file_size', 'file_name', 'line_column', '  ', ' ' }
+  },
+  -- TODO: maybe change colors later
+  -- mode_colors = {
+  --   i = "#d4be98",
+  --   n = "#84a598",
+  --   c = "#8fbf7f",
+  --   v = "#fc802d",
+  -- },
+  defaults = {
     true_colors = true,
     line_column = ' [%l/%L] :%c  ',
     branch_symbol = ' 󰘬 '
-	},
+  },
   mode_icons = {
     n = '',
     i = '',
@@ -354,8 +357,8 @@ cmp.setup({
     -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    -- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -368,7 +371,7 @@ cmp.setup({
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
     },
-    {{ name = 'buffer' }},
+    { { name = 'buffer' } },
     {
       { name = 'emoji' },
       { name = 'nerdfont' }
@@ -379,23 +382,23 @@ cmp.setup({
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources(
-    {{ name = 'cmp_git' }}, -- You can specify the `cmp_git` source if you were installed it.
-    {{ name = 'buffer' }}
+    { { name = 'cmp_git' } }, -- You can specify the `cmp_git` source if you were installed it.
+    { { name = 'buffer' } }
   )
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = {{ name = 'buffer' }}
+  sources = { { name = 'buffer' } }
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources(
-    {{ name = 'path' }},
-    {{ name = 'cmdline' }}
+    { { name = 'path' } },
+    { { name = 'cmdline' } }
   )
 })
 
@@ -408,80 +411,44 @@ vim.diagnostic.config({
 -- TODO: Check if this can be removed again
 local ok, wf = pcall(require, "vim.lsp._watchfiles")
 if ok then
-   -- disable lsp watcher. Too slow on linux
-   wf._watchfunc = function()
-     return function() end
-   end
+  -- disable lsp watcher. Too slow on linux
+  wf._watchfunc = function()
+    return function() end
+  end
 end
 
--- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 -- Actually load the damn lsp servers
---   still quite unsure why I have to do that manually after these mason shenanigans
---   https://imgflip.com/i/7k4h3c
-require('lspconfig').bashls.setup {
-  capabilities = capabilities,
-  filetypes = { "sh", "zsh" },
-}
-require('lspconfig').lua_ls.setup {
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' },
-      },
-    },
-  },
-}
-require('lspconfig').ts_ls.setup {
-  capabilities = capabilities
-}
-require('lspconfig').rust_analyzer.setup {
-  capabilities = capabilities
-}
-require('lspconfig').wgsl_analyzer.setup {
-  capabilities = capabilities
-}
-require('lspconfig').jsonls.setup {
-  capabilities = capabilities,
-  settings = {
-    json = {
-      schemas = require('schemastore').json.schemas(),
-      validate = { enable = true },
-    }
-  },
-}
-require('lspconfig').html.setup {
-  capabilities = capabilities
-}
-require('lspconfig').volar.setup {
-  capabilities = capabilities
-}
-require('lspconfig').cssls.setup {
-  capabilities = capabilities
-}
-require('lspconfig').eslint.setup {
-  capabilities = capabilities
-}
-require('lspconfig').marksman.setup {
-  capabilities = capabilities
-}
-require('lspconfig').pyright.setup {
-  capabilities = capabilities
-}
-require('lspconfig').typst_lsp.setup {
-  capabilities = capabilities,
-  settings = {
-    exportPdf = "onType",
-  },
-}
+-- INFO: One can add lsp configs by ...
+-- Overwriting: vim.lsp.config['rust_analyzer'] = { ... }
+-- Merging:     vim.lsp.config('rust_analyzer'], { ... })
+-- or merge them by putting them into lsp/<NAME>.lua
+
+vim.lsp.config('*', {
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  -- root_markers = { '.git' },
+})
+
+vim.lsp.enable({
+  'bashls',
+  'luals',
+  'html',
+  'cssls',
+  'jsonls',
+  'ts_ls',
+  'angularls',
+  'eslint',
+  'rust_analyzer',
+  'wgsl_analyzer',
+  'marksman',
+  'pyright',
+  'tinymist'
+})
 
 require('ts_context_commentstring').setup({
   enable_autocmd = false,
 })
 require('mini.comment').setup({
-    options = {
+  options = {
     custom_commentstring = function()
       return require('ts_context_commentstring').calculate_commentstring() or vim.bo.commentstring
     end,
@@ -511,3 +478,4 @@ require('tokyonight').setup({
   }
 })
 vim.cmd.colorscheme('tokyonight')
+
