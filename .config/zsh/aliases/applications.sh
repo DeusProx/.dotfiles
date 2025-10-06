@@ -14,5 +14,5 @@ alias envim='editnvim'
 alias ev='editnvim'
 
 # Use bat instead of cat!
-alias cat='bat'
+alias cat='bat --style="header,grid"'
 
