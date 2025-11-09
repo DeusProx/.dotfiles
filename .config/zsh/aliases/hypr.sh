@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 : <<'disabled'
 if typeset -f command_not_found_handler > /dev/null; then
     OLD_HANDLER=$(typeset -f command_not_found_handler)

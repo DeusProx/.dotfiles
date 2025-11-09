@@ -1,4 +1,3 @@
-#!/usr/bin/env zsh
 # This files contains git aliases
 
 alias g='git'

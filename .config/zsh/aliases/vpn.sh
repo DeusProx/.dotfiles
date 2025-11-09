@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 _vpn_usage() { cat <<EOF
 vpn - the minimal vpn interface
 
