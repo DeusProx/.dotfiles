@@ -1,0 +1,1 @@
+alias reload-tmux='tmux source-file ~/.config/tmux/tmux.conf'
