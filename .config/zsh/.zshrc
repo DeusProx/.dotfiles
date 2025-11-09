@@ -9,6 +9,8 @@ prompt adam1
 
 # zsh options
 # see "man 1 zshoptions"
+setopt KSH_ARRAYS # arrays shall start with 0
+
 setopt histignorealldups
 setopt nosharehistory
 
