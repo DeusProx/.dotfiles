@@ -1,4 +1,4 @@
-_vpn_usage() { cat <<EOF
+_vpn_usage() { /bin/cat <<EOF
 vpn - the minimal vpn interface
 
 Usage:
@@ -106,9 +106,9 @@ _vpn_completion() {
 
     case $state in
         profile)
+            _values -w 'flags' --help -h
             local profiles=("${(@f)$(_vpn_all)}")
             _describe -t profiles 'VPN profiles' profiles
-            _values -w 'flags' --help -h
             ;;
         separator)
             _values -w 'separator' --
