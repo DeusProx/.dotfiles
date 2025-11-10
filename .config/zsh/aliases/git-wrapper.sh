@@ -1,7 +1,9 @@
-# This script is wrapper for git to redefine/extend functionality.
-# Currently only the `--date` handling of the `commit` subcommand is redefined.
+# INFO:
+#   This script is wrapper for git to redefine/extend functionality.
+#   Currently only the `--date` handling of the `commit` subcommand is redefined.
+#   Everything else is just passed through.
 #
-# Use at your own peril!
+#  WARN: Use at your own peril!
 
 git_command=/usr/bin/git
 
@@ -12,8 +14,9 @@ function git {
   esac
 }
 
-# Usually --date only sets the `GIT_COMMITER_DATE`,
-# but we also want to set the `GIT_AUTHOR_DATE`.
+# INFO:
+#   Usually --date only sets the `GIT_COMMITER_DATE`,
+#   but we also want to set the `GIT_AUTHOR_DATE`.
 function git_commit {
   date_arg=""
   args=()
@@ -26,7 +29,7 @@ function git_commit {
           date_arg="$2"
           shift
         else
-          echo "fatal: date value missing" >&2
+          echo "fatal: date value not specified" >&2
           return 1
         fi
         ;;
@@ -46,6 +49,7 @@ function git_commit {
     return 2
   fi
 
+  # TODO: (Optional?) Add check so that the date of the current commit is not earlier than the last commit
 
   GIT_AUTHOR_DATE="\"$date_timestamp\"" GIT_COMMITTER_DATE="\"$date_timestamp\"" \
     "$git_command" commit "${args[@]}"
