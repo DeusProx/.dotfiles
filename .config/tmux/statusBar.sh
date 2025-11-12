@@ -57,8 +57,7 @@ tmux set -ag status-left "$(wl " " "#S")"               # Show current sessio
 # Right status bar
 tmux set -g status-right ''                              # Clear right
 tmux set -ag status-right "$(wr " " "#h")"              # Username
-tmux set -ag status-right "$(wr "󱦂 " "$(ip)")"           # Ip
+# tmux set -ag status-right "$(wr "󱦂 " "$(ip)")"           # Ip; we currently do not want to show ip to not doxx ourself
 tmux set -ag status-right "$(wr "󱦠 " "$(up)")"           # Uptime
 tmux set -ag status-right "$(wr " " "%a,%d %b %Y")"     # Current date
 tmux set -ag status-right "$(wr " " "%H:%M")"           # Current time
-
