@@ -1,6 +1,8 @@
+[alias]
+rr = "run --release"
+
 # https://github.com/rui314/mold?tab=readme-ov-file#how-to-use
 # check binary for mold with:
 #   $ readelf -p .comment target/release/<binary>
 [target.x86_64-unknown-linux-gnu]
 rustflags = ["-C", "link-arg=-fuse-ld=mold"]
-
