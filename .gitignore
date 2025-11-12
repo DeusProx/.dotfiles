@@ -1,3 +1,6 @@
 .dotfiles
 .steam
 
+# can be regenerated with `compinit -i -C` and usually resides in ~/.config/zsh/.zcompdump
+.zcompdump
+
