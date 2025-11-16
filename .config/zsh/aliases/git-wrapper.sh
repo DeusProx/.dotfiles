@@ -5,12 +5,10 @@
 #
 #  WARN: Use at your own peril!
 
-git_command=/usr/bin/git
-
 function git {
   case $1 in
     commit) shift; git_commit "$@";;
-    *) $git_command "$@";;
+    *) command git "$@";;
   esac
 }
 
@@ -21,7 +19,7 @@ function git_commit {
   date_arg=""
   args=()
 
-  while  (($#)); do
+  while (($#)); do
     case "$1" in
       --date=*) date_arg="${1#--date=}";;
       --date)
@@ -40,7 +38,7 @@ function git_commit {
   done
 
   if [[ -z $date_arg ]]; then
-    $git_command commit "${args[@]}"
+    command git commit "${args[@]}"
     return 0
   fi
 
@@ -52,6 +50,6 @@ function git_commit {
   # TODO: (Optional?) Add check so that the date of the current commit is not earlier than the last commit
 
   GIT_AUTHOR_DATE="\"$date_timestamp\"" GIT_COMMITTER_DATE="\"$date_timestamp\"" \
-    "$git_command" commit "${args[@]}"
+    command git commit "${args[@]}"
 }
 
