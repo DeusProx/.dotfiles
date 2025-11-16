@@ -2,7 +2,7 @@
 
 function tmux {
   if [ $# -eq 0 ]; then
-    command tmux a || command tmux n
+    command tmux a || command tmux new-session
   else
     command tmux "$@"
   fi
