@@ -39,7 +39,7 @@ function ip {
   echo "$(hostname -I | cut -d ' ' -f 1)"
 }
 function up {
-  echo "$(uptime | awk -F '[ ]' '{print $5}' | cut -d ',' -f 1)"
+  echo "$(uptime | cut -d',' -f1 | cut -d' ' -f4-)"
 }
 
 tmux set-window-option -g window-status-separator ''
@@ -54,10 +54,11 @@ tmux set -g status-left ''                               # Clear left
 tmux set -ag status-left "$(wl " " "#S")"               # Show current session
 # tmux set -ag status-left "$(wl " " "#S")"             # Show current session
 
-# Right status bar
+# Right status bar; disabled since not really needed. We know these infos
 tmux set -g status-right ''                              # Clear right
-tmux set -ag status-right "$(wr " " "#h")"              # Username
+# tmux set -ag status-right "$(wr " " "#h")"              # Username
 # tmux set -ag status-right "$(wr "󱦂 " "$(ip)")"           # Ip; we currently do not want to show ip to not doxx ourself
-tmux set -ag status-right "$(wr "󱦠 " "$(up)")"           # Uptime
-tmux set -ag status-right "$(wr " " "%a,%d %b %Y")"     # Current date
-tmux set -ag status-right "$(wr " " "%H:%M")"           # Current time
+# tmux set -ag status-right "$(wr "󱦠 " "$(up)")"           # Uptime
+# tmux set -ag status-right "$(wr " " "%a,%d %b %Y")"     # Current date
+# tmux set -ag status-right "$(wr " " "%H:%M")"           # Current time
+
