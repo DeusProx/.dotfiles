@@ -3,11 +3,82 @@
 [user]
     name = Gordon Lawrenz
     email = gordon@lawrenz.email
+
+# No "You are in 'detached HEAD' state. You can look around ..." anymore
+[advice]
+    detachedHead = false
+
+[credential]
+    helper = cache --timeout=86400
+
+[help]
+    autocorrect = prompt
+
 [init]
     defaultBranch = main
+
+[core]
+    editor = nvim
+    preloadIndex = true
+    fscache = true
+    fsmonitor = true
+    untrackedCache = true
+    ignoreCase = false
+
+[column]
+    ui = auto
+
+[color]
+    ui = auto
+
+[diff]
+    algorithm = histogram # https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
+    colorMoved = true
+    renames = true
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
+[fetch]
+    all = true
+    prune = true
+    pruneTags = true
+    recurseSubmodules = on-demand
+
+[pull]
+    ff = only
+
+[merge]
+    conflictstyle = zdiff3
+
 [push]
     default = simple
     followTags = true
+    autoSetupRemote = true
 
+[rebase]
+    autoSquash = true
+
+# [re]use [re]covered [re]solution
 [rerere]
     enabled = true
+    autoupdate = true
+    diffAlgorithm = histogram
+
+# avoid data corruption
+[transfer]
+    fsckobjects = true
+[fetch]
+    fsckobjects = true
+[receive]
+    fsckobjects = true
+
+# INFO: automatically added by `git lfs install`
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
