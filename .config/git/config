@@ -61,6 +61,8 @@
 
 [rebase]
     autoSquash = true
+    autoStash = true
+    updateRefs = true
 
 # [re]use [re]covered [re]solution
 [rerere]
