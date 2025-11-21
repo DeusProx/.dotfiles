@@ -84,7 +84,26 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+
+# INFO: Descriptions for the alias functions below
+# See the `alias` alias or the script in `~/.config/git/alias.sh`
+[alias-description]
+    alias = "lists all defined alias functions with a description"
+    s = "shows short status"
+    st = "shows full status"
+    l = "shows the git log and a concise way"
+    untrack = "removes file(s) from index (keeps file(s))"
+    unstage = "removes file(s) from staging area"
+    uncommit = "rewinds HEAD by one commit, keep changes staged"
+    amend = "amends last commit without editing message"
+    oops = "see amend"
+    empty = "creates an orphan branch with no files tracked"
+    open = "opens the repo in your browser"
+    browse = "see open"
+
 [alias]
+    alias = ! bash ~/.config/git/alias.sh
+
     # status and logging
     s = status -s
     st = status
