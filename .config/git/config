@@ -84,3 +84,25 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+[alias]
+    # status and logging
+    s = status -s
+    st = status
+    l = log --graph --date=relative --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%C(auto)%d%Creset %C(blue)%an%Creset %C(yellow)%ad%Creset'
+
+    # removes files from repo but not from disk
+    untrack = rm -r --cached --
+    unstage = reset HEAD --
+    uncommit = reset --soft HEAD~1
+
+    # add to last commit
+    amend = commit --amend --no-edit
+    oops = commit --amend --no-edit
+
+    # creates an empty branch to review a repo/branch against
+    empty = ! git checkout --orphan empty && git rm -r --cached --quiet --ignore-unmatch . && git commit --allow-empty -m 'empty commit'
+
+    # opens the browser and goes to your github project
+    open = ! open $(git config remote.origin.url | cut -d ' ' -f 1 | head -1 | sed 's/:/\\//' | sed 's/.git$//' | sed s'/^/https:\\/\\//') > /dev/null &
+    browse = open
+
