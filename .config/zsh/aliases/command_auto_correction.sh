@@ -18,6 +18,7 @@ command_not_found_handler() {
     return $?
   fi
 
+  print -r -- "command not found: $@"
   return $EXIT_COMMAND_NOT_FOUND
 }
 
