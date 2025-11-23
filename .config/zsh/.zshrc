@@ -89,14 +89,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-  # load Angular CLI autocompletion.
-  source <(ng completion script)
-
-  # load Alacritty
-  source ~/.bash_completion/alacritty
 
 # Shows sources for packages if command is not found
 source /etc/zsh_command_not_found
+# load Angular CLI autocompletion.
+source <(ng completion script)
 
 # Set nvim as default editor
 #   `sudo -e <filepath>` to edit file in nvim with root privileges
@@ -135,4 +132,3 @@ unset conf
 # eval "$CMD"
 
 # fastfetch
-
