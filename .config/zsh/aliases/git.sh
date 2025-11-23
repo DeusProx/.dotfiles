@@ -1,5 +1,7 @@
 # This files contains git aliases
 
+alias dotfiles='/usr/bin/git --git-dir=~/.dotfiles/ --work-tree=~/'
+
 alias g='git'
 
 alias gs='git status'
