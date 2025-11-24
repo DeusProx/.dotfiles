@@ -75,9 +75,6 @@ zstyle ':completion:*:*:kill:*' force-list always
 # load fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# load Cargo
-. "$HOME/.cargo/env"
-
 # load Go
 if [ -z "$GOPATH" ]; then
   export GOPATH="$HOME"/go
