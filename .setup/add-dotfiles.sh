@@ -55,10 +55,14 @@ if [ -d "$DOTFILES_PATH" ]; then
 else
   sudo pacman -Sy  --noconfirm --needed git git-lfs
 
-  git clone --separate-git-dir=$DOTFILES_PATH $REPO_HTTPS || error "... warning: Failed to init git repo"
+  git init --separate-git-dir=$DOTFILES_PATH
+  git remote add origin $REPO_HTTPS
   git remote set-url --push origin $REPO_GIT
 
   git config set status.showuntrackedfiles no
+
+  git fetch
+  git checkout main
 fi
 info "Setup of .dotfiles complete!"
 
@@ -76,6 +80,7 @@ else
   # source $HOME/.profile
 
   sudo pacman -Sy  --noconfirm --needed rustup
+  rustup default stable
 
   PARU_PATH=/tmp/paru
   git clone https://aur.archlinux.org/paru.git $PARU_PATH
