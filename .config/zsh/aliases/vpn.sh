@@ -46,6 +46,7 @@ _vpn_overview() {
 }
 
 vpn() {
+    # Parsing and multiplexing arguments into correct paths
     if [[ $# -eq 0 ]]; then
         _vpn_overview
         return
@@ -74,7 +75,8 @@ vpn() {
         return 1
     fi
     shift
-    local command=$@
+
+    local -a command=("$@")
     if [[ ! $command ]]; then
         echo "Error: expected command after '--'"
         echo " Hint: vpn <profile> -- <command>"
@@ -82,14 +84,24 @@ vpn() {
     fi
 
     # run command within vpn
+    trap "_vpn_down $profile; return 130" INT
+    trap "_vpn_down $profile; return 130" TERM
+
     local command_status
+    echo "Running within vpn \"$profile\""
+    echo "> ${command[@]}"
+
     _vpn_up "$profile" || {
         echo "Error: could not activate to $profile"
         return 1
     }
-    $command
+
+    "${command[@]}"
     command_status=$?
+
     _vpn_down "$profile"
+
+    trap - INT TERM
 
     return $command_status
 }
