@@ -1,3 +1,9 @@
+# you shall calculate easily
+calc() {
+  echo "$(( $@ ))"
+}
+alias c='calc'
+
 # you shall use neovim!
 alias v='nvim'
 alias nv='nvim'
