@@ -144,7 +144,12 @@ PKG_DESKTOP=(
   hyprland # compositor
   qt5-wayland
   qt6-wayland
-  xdg-desktop-portal-hyprland # screensharing
+
+  # https://wiki.archlinux.org/title/XDG_Desktop_Portal
+  # Also see ~/.config/xdg-desktop-portal/hyprland-portals.conf
+  xdg-desktop-portal-hyprland
+  xdg-desktop-portal-gtk
+
   # xwaylandvideobridge # AUR; screensharing with xwayland applications
   hyprpolkitagent # polkit auth agent; controlls system privileges
 
