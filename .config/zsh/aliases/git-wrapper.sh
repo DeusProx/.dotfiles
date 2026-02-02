@@ -42,7 +42,7 @@ function git_commit {
     return 0
   fi
 
-  if ! date_timestamp=$(date -d "$date_arg" 2>/dev/null); then
+  if ! date_timestamp=$(date -d "$date_arg" --rfc-email 2>/dev/null); then
     echo "fatal: invalid date format: $date_arg" >&2
     return 2
   fi
