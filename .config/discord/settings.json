@@ -3,7 +3,7 @@
   "offloadAdmControls": true,
   "enableHardwareAcceleration": true,
   "chromiumSwitches": {},
-  "IS_MAXIMIZED": false,
+  "IS_MAXIMIZED": true,
   "IS_MINIMIZED": false,
   "asyncVideoInputDeviceInit": false,
   "SKIP_HOST_UPDATE": true
