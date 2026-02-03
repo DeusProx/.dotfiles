@@ -4,7 +4,7 @@ Version=1.0
 Terminal=false
 Type=Application
 Name=TIDAL
-Exec=/opt/google/chrome/google-chrome --app="https://tidal.com"
+Exec=/opt/google/chrome/google-chrome --app="https://tidal.com" --profile-directory="Default"
 #Icon=chrome-emefpkhgihlhfddcjfghpndaeliajgjj-Default
 Icon=TIDAL
 StartupWMClass=TIDAL
