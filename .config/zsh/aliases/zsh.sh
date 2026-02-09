@@ -23,6 +23,12 @@ done
 
 unset ddot ddotPath i
 
+# Home and End key bindings
+bindkey '\e[H' beginning-of-line
+bindkey '\eOH' beginning-of-line
+bindkey '\e[F' end-of-line
+bindkey '\eOF' end-of-line
+
 # list directory alias
 alias ls='exa'
 alias l='ls -lah'
