@@ -23,11 +23,14 @@ done
 
 unset ddot ddotPath i
 
-# Home and End key bindings
-bindkey '\e[H' beginning-of-line
-bindkey '\eOH' beginning-of-line
-bindkey '\e[F' end-of-line
-bindkey '\eOF' end-of-line
+bindkey '^[[2~'              overwrite-mode       # Insert
+bindkey "${terminfo[kdch1]}" delete-char          # Delete
+
+bindkey '\e[H'               beginning-of-line    # Home
+bindkey '\e[F'               end-of-line          # End
+
+bindkey "${terminfo[kpp]}"   up-line-or-history   # PageUp
+bindkey "${terminfo[knp]}"   down-line-or-history # PageDown
 
 # list directory alias
 alias ls='exa'
