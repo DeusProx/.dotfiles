@@ -91,7 +91,7 @@ export NVM_DIR="$HOME/.nvm"
 export EDITOR=nvim
 
 # Set terminal type
-export TERM='screen-256color'
+export TERM='xterm-256color'
 
 # Load Aliases
 for conf in $ZDOTDIR/aliases/*; do source $conf; done
