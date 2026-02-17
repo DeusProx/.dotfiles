@@ -39,10 +39,10 @@ _vpn_overview() {
     len=$((len+1))
 
     local connection_state
-    printf "  %-${len}s %s\n" "VPN" "STATE"
+    printf "%-${len}s %s\n" "VPN" "STATE"
     for profile in "${profiles[@]}"; do
         _vpn_is_up "$profile" && connection_state=up || connection_state=down
-        printf "  %-${len}s %s\n" "$profile" "$connection_state"
+        printf "%-${len}s %s\n" "$profile" "$connection_state"
     done
 }
 
