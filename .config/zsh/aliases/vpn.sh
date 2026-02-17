@@ -12,8 +12,9 @@ Example:
 EOF
 }
 
-_vpn_all()      { nmcli --terse --fields NAME,TYPE connection show          | awk -F: '$2=="vpn" {print $1}' }
-_vpn_active()   { nmcli --terse --fields NAME,TYPE connection show --active | awk -F: '$2=="vpn" {print $1}' }
+_vpn_filter()   { awk -F: '$2=="vpn" || $2=="wireguard" {print $1}' }
+_vpn_all()      { nmcli --terse --fields NAME,TYPE connection show          | _vpn_filter }
+_vpn_active()   { nmcli --terse --fields NAME,TYPE connection show --active | _vpn_filter }
 _vpn_is_up()    { _vpn_active | grep -Fxq -- "$1" }
 _vpn_is_valid() { _vpn_all    | grep -Fxq -- "$1" }
 
