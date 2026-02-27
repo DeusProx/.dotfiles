@@ -12,10 +12,8 @@ alias c='calc'
 
 # you shall use neovim!
 alias v='nvim'
-alias nv='nvim'
 alias vi='nvim'
 alias vim='nvim'
-alias nano='nvim'
 
 # Edit Neovim Config
 alias editnvim='nvim ~/.config/nvim/'
