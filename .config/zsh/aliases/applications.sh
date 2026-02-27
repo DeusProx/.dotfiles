@@ -15,12 +15,6 @@ alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 
-# Edit Neovim Config
-alias editnvim='nvim ~/.config/nvim/'
-alias envim='editnvim'
-# alias env='editnvim' # NOOO! We don't overwrite env! Are you insane?
-alias ev='editnvim'
-
 # you shall use bat!
 alias cat='bat --style="header,grid"'
 
