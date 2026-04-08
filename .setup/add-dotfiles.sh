@@ -166,7 +166,7 @@ PKG_DESKTOP=(
   waybar # topbar
   network-manager-applet # nm-applet
 
-  swaybg waypaper # background
+  swaybg # background
   swaync # notification
   hyprshot # screenshots
 
