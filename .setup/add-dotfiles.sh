@@ -116,6 +116,7 @@ PKG_VM=(
 
 PKG_SYSTEM=(
   linux-headers
+  kernel-modules-hook # backups kernel on updates to keep the system running until next reboot
   reflector # gets latest mirrors sorted by speed
   zsh
   fastfetch
@@ -259,9 +260,10 @@ paru -Syu --noconfirm --needed ${PKG_VM[@]} ${PKG_SYSTEM[@]} ${PKG_AI[@]} ${PKG_
 info "installed packages"
 
 info "activating packages"
+sudo systemctl daemon-reload
 sudo chsh -s /bin/zsh $(whoami)
-
 sudo systemctl enable sddm
+sudo systemctl enable --now linux-modules-cleanup.service
 
 sudo systemctl enable --now --user hyprpolkitagent.service
 
