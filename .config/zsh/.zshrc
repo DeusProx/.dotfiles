@@ -51,6 +51,8 @@ setopt pushdminus          # exchanges meaning of '+' and '-' when used with a n
 autoload -Uz compinit
 compinit
 
+zstyle ':completion:*' rehash true # you shall reload completion after package installation
+
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
