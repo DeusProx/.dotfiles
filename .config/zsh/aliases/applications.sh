@@ -18,3 +18,9 @@ alias vim='nvim'
 # you shall use bat!
 alias cat='bat --style="header,grid"'
 
+# you shall watch the file while transpiling latex
+latex-watch() {
+  echo $1 | entr pdflatex $1
+}
+alias wlatex='latex-watch'
+
