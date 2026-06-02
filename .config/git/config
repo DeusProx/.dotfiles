@@ -97,7 +97,7 @@
     uncommit = "rewinds HEAD by one commit, keep changes staged"
     amend = "amends last commit without editing message"
     oops = "see amend"
-    empty = "creates an orphan branch with no files tracked"
+    empty = "checks out a detached empty commit"
     open = "opens the repo in your browser"
     browse = "see open"
     w = "worktree shortcut"
@@ -120,8 +120,8 @@
     amend = commit --amend --no-edit
     oops = commit --amend --no-edit
 
-    # creates an empty branch to review a repo/branch against
-    empty = ! git checkout --orphan empty && git rm -r --cached --quiet --ignore-unmatch . && git commit --allow-empty -m 'empty commit'
+    # creates a detached empty commit; useful for working with worktrees or to review a whole branch/repo against
+    empty = ! git checkout $(git commit-tree $(git hash-object -t tree /dev/null) < /dev/null)
 
     # opens the browser and goes to your github project
     open = ! open $(git config remote.origin.url | cut -d ' ' -f 1 | head -1 | sed 's/:/\\//' | sed 's/.git$//' | sed s'/^/https:\\/\\//') > /dev/null &
