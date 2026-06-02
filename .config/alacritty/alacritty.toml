@@ -39,6 +39,12 @@ key = "N"
 mods = "Control|Shift"
 action = "SpawnNewInstance"
 
+# Next keybind was added by /terminal-setup command of claude cli
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
+
 [[hints.enabled]]
 action = 'Copy'
 post_processing = false
