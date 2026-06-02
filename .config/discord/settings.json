@@ -6,5 +6,7 @@
   "IS_MAXIMIZED": true,
   "IS_MINIMIZED": false,
   "asyncVideoInputDeviceInit": false,
-  "SKIP_HOST_UPDATE": true
+  "SKIP_HOST_UPDATE": true,
+  "openH264Enabled": true,
+  "DESKTOP_TTI_REMOVE_V8_CACHE_CLEAR": true
 }
