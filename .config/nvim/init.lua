@@ -430,7 +430,7 @@ vim.lsp.config('*', {
 
 vim.lsp.enable({
   'bashls',
-  'luals',
+  'lua_ls',
   'html',
   'cssls',
   'jsonls',
