@@ -6,7 +6,12 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 
 -- You shall use the goddamn system clipboard!
-vim.api.nvim_set_option_value('clipboard', 'unnamedplus', {})
+vim.opt.clipboard = 'unnamedplus'
+
+-- You shall provide remote shell support for clipboard
+if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
+  vim.g.clipboard = 'osc52'
+end
 
 -- You shall remember what I did so I can undo at any point in time!
 vim.opt.undodir = os.getenv('HOME') .. '/.cache/nvim/undodir'
