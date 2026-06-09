@@ -281,6 +281,7 @@ local mainMod = 'SUPER'
 local moveMod = 'SHIFT'
 
 -- common
+hl.bind(mainMod .. ' + ' .. moveMod .. ' + ESCAPE', hl.dsp.exec_cmd('systemctl suspend'))
 hl.bind(mainMod .. ' + Q', hl.dsp.window.close())                      -- [Q]uit
 hl.bind(mainMod .. ' + V', hl.dsp.window.float({ action = 'toggle' })) -- [V]loating ;)
 hl.bind(mainMod .. ' + P', hl.dsp.window.pin())                        -- [P]in
