@@ -7,7 +7,7 @@ hl.monitor({
   output   = '',
   mode     = 'highres',
   position = 'auto',
-  scale    = 'auto',
+  scale    = 1,
   vrr      = 1,
   bitdepth = 10,
 })
