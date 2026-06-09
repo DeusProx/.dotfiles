@@ -440,7 +440,7 @@ hl.workspace_rule({
 })
 hl.window_rule({
   match = { class = '^([Ss]team)$' },
-  workspace = 'name:gaming'
+  workspace = 'name:gaming silent'
 })
 hl.on('hyprland.start', function ()
   hl.exec_cmd('steam', { workspace = 'name:gaming silent' })
