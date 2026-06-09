@@ -422,8 +422,15 @@ hl.workspace_rule({
   workspace = 'name:browser',
   on_created_empty = browser_cmd,
 })
+local browser_window_rule = hl.window_rule({
+  match = { class = '^(google-chrome)$' },
+  workspace = 'name:browser',
+  enabled = false,
+})
 hl.on('hyprland.start', function ()
+  browser_window_rule:set_enabled(true)
   hl.exec_cmd(browser_cmd, { workspace = 'name:browser silent' })
+  browser_window_rule:set_enabled(false)
 end)
 
 
