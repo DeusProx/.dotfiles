@@ -449,6 +449,16 @@ hl.workspace_rule({
   on_created_empty = browser .. ' --incognito',
 })
 
+hl.window_rule({
+  match = { class = '^([dD]iscord)$' },
+  workspace = 'special:communication silent',
+})
+hl.on('hyprland.start', function ()
+  hl.exec_cmd('signal-desktop', { workspace = 'special:communication silent' })
+  hl.exec_cmd('thunderbird', { workspace = 'special:communication silent' })
+  hl.exec_cmd('discord', { workspace = 'special:communication silent' })
+end)
+
 hl.workspace_rule({
   workspace = 'special:music',
   on_created_empty = 'gtk-launch Tidal',
