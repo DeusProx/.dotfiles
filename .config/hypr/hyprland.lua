@@ -239,6 +239,7 @@ hl.config({
 
 hl.workspace_rule({
   workspace = 'name:browser',
+  default = true,
   layout = 'master',
 })
 
