@@ -36,7 +36,7 @@
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "interval": 1,
-        "format": "<big>{:%a %d %b %y - %H:%M:%S}</big>"
+        "format": "{:%a %d %b %y - %H:%M:%S}"
 
     },
     "custom/power": {

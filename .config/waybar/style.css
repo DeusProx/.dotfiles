@@ -1,5 +1,11 @@
+@define-color bg   rgba(31, 31, 40, 0.85);
+@define-color cyan rgba(51, 204, 255, 0.933);
+@define-color mint rgba(0, 255, 153, 0.933);
+@define-color warn rgba(255, 40, 40, 0.33);
+
 * {
   border: none;
+  font-size: 11pt;
 }
 
 #waybar {
@@ -7,28 +13,33 @@
 }
 
 #waybar > * {
-  margin: 8px 8px 0px 8px;
+  margin: 6px 6px 0px 6px;
 }
 
 #waybar > * > * {
-  background-color: rgba(31, 31, 40, 0.85); /* 217 equals the 0.85 opacity of alacritty */
-  padding: 4px 24px;
+  padding: 0px 16px;
   border-radius: 100px;
+  background-color: @bg; /* 217 equals the 0.85 opacity of alacritty */
 }
 
+
 #workspaces button {
-  padding: 4px 8px;
+  padding: 0px 8px;
   border-radius: 100px;
-  border: 2px solid transparent; /* all need a border or it looks stupid if a few add & remove borders dynamically*/
+  border: 2px solid transparent; /* all need a border or it looks stupid if a few add & remove borders dynamically */
 }
 #workspaces button.active {
-  border-color: rgba(51, 204, 255, 0.933); /* equal to rgba(33ccffee) we use in alacritty */
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+
+  background-image:
+    linear-gradient(135deg, alpha(@bg, 0.45), alpha(@bg, 0.9), alpha(@bg, 0.45)),
+    linear-gradient(135deg, @cyan,  @mint);
 }
 #workspaces button.urgent {
-  background-color: rgba(255, 40, 40, 0.33);
+  background-color: @warn;
 }
 #workspaces button:hover {
-    background: none;
+  background: none;
 }
-/* #workspaces button.focused {} */
 
