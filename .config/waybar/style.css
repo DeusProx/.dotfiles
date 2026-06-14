@@ -22,6 +22,16 @@
   background-color: @bg; /* 217 equals the 0.85 opacity of alacritty */
 }
 
+/* spreads elements evenly*/
+box > widget > .module {
+  padding: 0 8px;
+}
+box > widget:first-child > .module {
+  padding-left: 0;
+}
+box > widget:last-child > .module {
+  padding-right: 0;
+}
 
 #workspaces button {
   padding: 0px 8px;
