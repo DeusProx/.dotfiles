@@ -106,6 +106,9 @@ source /usr/share/nvm/init-nvm.sh
 nvm install --lts
 nvm use --lts
 
+info "Install Nix"
+paru -S nix
+sudo systemctl enable --now nix-daemon.service
 
 info "Installing packages"
 
@@ -283,4 +286,3 @@ S="$(($RUN_TIME % 60))"
 
 info "Full installation was successfull!"
 info "Total installation time: ${M}m ${S}s"
-
