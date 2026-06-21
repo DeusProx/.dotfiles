@@ -104,87 +104,6 @@ require('lazy').setup({
   -- icons
   { 'nvim-tree/nvim-web-devicons', lazy = true },
 
-  -- tree-sitter - incremental parser for buffer
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    opts = {
-      -- for syntax-highlight, instead of regular expressions, use tree-sitter:
-      highlight = {
-        enable = true,
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
-      },
-      indent = { enable = true },
-      ensure_installed = {
-        -- scripts
-        'bash',
-        'python',
-        'lua',
-
-        -- document
-        'latex',
-        'bibtex',
-        'markdown',
-        'markdown_inline',
-
-        -- web
-        'typescript',
-        'tsx',
-        'javascript',
-        'astro',
-        'html',
-        'css',
-        'scss',
-
-        -- rust
-        'rust',
-        'ron',
-
-        -- oldschool
-        'c',
-        'c_sharp',
-        'cpp',
-
-        -- rendering
-        'glsl',
-        'hlsl',
-        'wgsl',
-
-        -- build
-        'make',
-        'cmake',
-        'dockerfile',
-
-        -- tooling
-        -- 'diff',
-        -- 'comment',
-        -- 'git_config',
-        -- 'git_rebase',
-        -- 'gitattributes',
-        -- 'gitcommit',
-        -- 'gitignore',
-
-        -- data
-        'json',
-        'yaml',
-        'proto',
-
-        -- misc
-        'regex',
-        'sql',
-      }
-    },
-    config = function(_, opts)
-      require('nvim-treesitter.configs').setup(opts)
-    end,
-
-  },
-  { 'nvim-treesitter/playground' },
-
   { -- TODO: Configure
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -250,11 +169,11 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'kaarmu/typst.vim',
-    ft = 'typst',
-    lazy = false,
-  },
+  -- {
+  --   'kaarmu/typst.vim',
+  --   ft = 'typst',
+  --   lazy = false,
+  -- },
 
   -- json schemas
   {
@@ -281,7 +200,11 @@ require('lazy').setup({
   { 'hrsh7th/cmp-path' },
 
   --   luasnip
-  { 'L3MON4D3/LuaSnip' },
+  {
+    'L3MON4D3/LuaSnip',
+    version = 'v2.*',
+    run = "make install_jsregexp",
+  },
   { 'saadparwaiz1/cmp_luasnip' },
 
   -- offers git support
