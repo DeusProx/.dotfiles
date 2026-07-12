@@ -130,7 +130,7 @@ PKG_SYSTEM=(
   htop
   btop
   nvtop
-  radeontop
+  amdgpu_top
 
   curl
   wget
