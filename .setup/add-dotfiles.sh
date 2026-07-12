@@ -80,7 +80,7 @@ else
   # source $HOME/.profile
 
   sudo pacman -Sy  --noconfirm --needed rustup
-  rustup default stable
+  rustup default nightly
 
   PARU_PATH=/tmp/paru
   git clone https://aur.archlinux.org/paru.git $PARU_PATH
