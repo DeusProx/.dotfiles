@@ -125,8 +125,8 @@ PKG_SYSTEM=(
   fwupd # updating firmware
 
   zsh
-  fastfetch
 
+  fastfetch
   htop
   btop
   nvtop
