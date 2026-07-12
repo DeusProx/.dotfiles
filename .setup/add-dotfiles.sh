@@ -121,6 +121,9 @@ PKG_SYSTEM=(
   linux-headers
   kernel-modules-hook # backups kernel on updates to keep the system running until next reboot
   reflector # gets latest mirrors sorted by speed
+
+  fwupd # updating firmware
+
   zsh
   fastfetch
 
