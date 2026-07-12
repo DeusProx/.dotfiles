@@ -164,6 +164,7 @@ require('lazy').setup({
           'eslint',
           'pyright',
           'tinymist',
+          'nil_ls',
         }
       })
     end,
@@ -364,7 +365,8 @@ vim.lsp.enable({
   'wgsl_analyzer',
   'marksman',
   'pyright',
-  'tinymist'
+  'tinymist',
+  'nil_ls',
 })
 
 require('ts_context_commentstring').setup({
