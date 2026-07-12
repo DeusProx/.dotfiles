@@ -341,6 +341,16 @@ if ok then
   end
 end
 
+-- Adds a function to easily check lsps
+vim.api.nvim_create_user_command(
+  "LspInfo",
+  function()
+    vim.cmd("checkhealth vim.lsp")
+  end, {
+    desc = "Show LSP configuration and active clients",
+  }
+)
+
 -- Actually load the damn lsp servers
 -- INFO: One can add lsp configs by ...
 -- Overwriting: vim.lsp.config['rust_analyzer'] = { ... }
