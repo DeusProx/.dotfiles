@@ -113,7 +113,7 @@ hl.on('hyprland.start', function ()
 
   -- environment apps & widgets
   hl.exec_cmd('nm-applet') -- networking
-  hl.exec_cmd('waybar')    -- system bar
+  -- hl.exec_cmd('waybar')    -- system bar
 
 end)
 
