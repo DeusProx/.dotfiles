@@ -296,7 +296,8 @@ local layout_cmd = {
   master = hl.dsp.layout('swapwithmaster'),
 }
 hl.bind(mainMod .. ' + F', function ()
-  local layout = hl.get_active_workspace().tiled_layout;
+  local ws = hl.get_active_special_workspace() or hl.get_active_workspace();
+  local layout = ws and ws.tiled_layout;
   local cmd = layout_cmd[layout];
   if cmd then
     hl.dispatch(cmd)
