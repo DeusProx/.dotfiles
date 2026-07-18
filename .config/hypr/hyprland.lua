@@ -316,51 +316,44 @@ hl.on("workspace.active", function ()
   end
 end)
 
--- move focus (arrows)
-hl.bind(mainMod .. ' + left',  hl.dsp.focus({ direction = 'left' }))
-hl.bind(mainMod .. ' + right', hl.dsp.focus({ direction = 'right' }))
-hl.bind(mainMod .. ' + up',    hl.dsp.focus({ direction = 'up' }))
-hl.bind(mainMod .. ' + down',  hl.dsp.focus({ direction = 'down' }))
 
--- move focus (vim)
-hl.bind(mainMod .. ' + H', hl.dsp.focus({ direction = 'left' }))
-hl.bind(mainMod .. ' + L', hl.dsp.focus({ direction = 'right' }))
-hl.bind(mainMod .. ' + K', hl.dsp.focus({ direction = 'up' }))
-hl.bind(mainMod .. ' + J', hl.dsp.focus({ direction = 'down' }))
+-- moving focus and windows
+local keybinds = {
+  { key = 'h',     target = { direction = 'left'  } },
+  { key = 'l',     target = { direction = 'right' } },
+  { key = 'k',     target = { direction = 'up'    } },
+  { key = 'j',     target = { direction = 'down'  } },
+  { key = 'left',  target = { direction = 'left'  } },
+  { key = 'right', target = { direction = 'right' } },
+  { key = 'up',    target = { direction = 'up'    } },
+  { key = 'down',  target = { direction = 'down'  } },
 
--- move window (arrows)
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + left',  hl.dsp.window.move({ direction = 'left' }))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + right', hl.dsp.window.move({ direction = 'right' }))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + up',    hl.dsp.window.move({ direction = 'up' }))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + down',  hl.dsp.window.move({ direction = 'down' }))
+  -- for named workspaces
+  { key = 'G', target = { workspace = 'name:gaming'  } },
+  { key = 'B', target = { workspace = 'name:browser' } },
+}
 
--- move window (vim)
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + H', hl.dsp.window.move({ direction = 'left' }))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + L', hl.dsp.window.move({ direction = 'right' }))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + K', hl.dsp.window.move({ direction = 'up' }))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + J', hl.dsp.window.move({ direction = 'down' }))
-
--- named workspaces
-hl.bind(mainMod .. ' + G', hl.dsp.focus({ workspace = 'name:gaming' }))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + G', hl.dsp.window.move({ workspace = 'name:gaming' }))
-hl.bind(mainMod .. ' + B', hl.dsp.focus({ workspace = 'name:browser' }))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + B', hl.dsp.window.move({ workspace = 'name:browser' }))
-
--- special workspace | scratchpad
-hl.bind(mainMod .. ' + S', hl.dsp.workspace.toggle_special('terminal'))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + S', hl.dsp.window.move({ workspace = 'special:terminal'}))
-hl.bind(mainMod .. ' + I', hl.dsp.workspace.toggle_special('incognito'))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + I', hl.dsp.window.move({ workspace = 'special:incognito'}))
-hl.bind(mainMod .. ' + M', hl.dsp.workspace.toggle_special('music'))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + M', hl.dsp.window.move({ workspace = 'special:music'}))
-hl.bind(mainMod .. ' + C', hl.dsp.workspace.toggle_special('communication'))
-hl.bind(mainMod .. ' + ' .. moveMod .. ' + C', hl.dsp.window.move({ workspace = 'special:communication'}))
-
--- switch workspaces
+-- for numbered workspaces
 for i = 1, 10 do
-  local key = i % 10
-  hl.bind(mainMod .. ' + ' .. key, hl.dsp.focus({ workspace = i }))
-  hl.bind(mainMod .. ' + ' .. moveMod .. ' + ' .. key, hl.dsp.window.move({ workspace = i }))
+  keybinds[#keybinds + 1] = { key = tostring(i % 10), target = { workspace = i } }
+end
+
+for _, entry in ipairs(keybinds) do
+  hl.bind(mainMod .. ' + ' .. entry.key,                     hl.dsp.focus(entry.target))
+  hl.bind(mainMod .. ' + ' .. moveMod .. ' + ' .. entry.key, hl.dsp.window.move(entry.target))
+end
+
+local special_ws_keybinds = {
+    -- for special workspaces
+  { key = 'S', target = 'terminal'      },
+  { key = 'I', target = 'incognito'     },
+  { key = 'M', target = 'music'         },
+  { key = 'C', target = 'communication' },
+}
+
+for _, entry in ipairs(special_ws_keybinds) do
+  hl.bind(mainMod .. ' + ' .. entry.key,                     hl.dsp.workspace.toggle_special(entry.target))
+  hl.bind(mainMod .. ' + ' .. moveMod .. ' + ' .. entry.key, hl.dsp.window.move({ workspace = 'special:' .. entry.target }))
 end
 
 hl.config({ binds = { allow_workspace_cycles = true } })
