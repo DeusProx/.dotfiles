@@ -308,8 +308,10 @@ end)
 hl.bind(mainMod ..  ' + N', hl.dsp.exec_cmd('swaync-client -t'))
 hl.on("workspace.active", function ()
   if hl.get_active_workspace().name == 'gaming' then
+    hl.exec_cmd('powerprofilesctl set performance')
     hl.exec_cmd('swaync-client --dnd-on')
   else
+    hl.exec_cmd('powerprofilesctl set balanced')
     hl.exec_cmd('swaync-client --dnd-off')
   end
 end)
