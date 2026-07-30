@@ -4,8 +4,8 @@
 
 [general]
 import = [
-'./fonts/index.toml',
-'./themes/index.toml',
+  './fonts/index.toml',
+  './themes/index.toml',
 ]
 
 [env]

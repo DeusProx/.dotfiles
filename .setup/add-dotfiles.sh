@@ -139,6 +139,13 @@ PKG_SYSTEM=(
   inetutils # telnet, ping, ...
   brightnessctl
   nvme-cli
+
+  font-manager
+  ttf-firacode-nerd
+  noto-fonts
+  noto-fonts-cjk
+  noto-fonts-emoji
+  noto-fonts-extra
 )
 
 PKG_AI=(
