@@ -471,3 +471,6 @@ hl.workspace_rule({
 hl.on('hyprland.start', function ()
   hl.exec_cmd('gtk-launch Tidal', { workspace = 'special:music silent' })
 end)
+
+require('workaroundRestoreFocus')
+
