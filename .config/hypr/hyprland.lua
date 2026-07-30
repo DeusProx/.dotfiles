@@ -291,18 +291,21 @@ hl.bind(mainMod .. ' + P', hl.dsp.window.pin())                        -- [P]in
 hl.bind(mainMod .. ' + T', hl.dsp.exec_cmd(terminal))     -- [T]erminal
 hl.bind(mainMod .. ' + SPACE', hl.dsp.exec_cmd(launcher)) -- '[SPACE]'-laucher
 
-local layout_cmd = {
-  dwindle = hl.dsp.layout('togglesplit'),
-  master = hl.dsp.layout('swapwithmaster'),
-}
-hl.bind(mainMod .. ' + F', function ()
-  local ws = hl.get_active_special_workspace() or hl.get_active_workspace();
-  local layout = ws and ws.tiled_layout;
-  local cmd = layout_cmd[layout];
-  if cmd then
+---Selects a dispatcher based on the active workspace's tiled layout.
+---@param layout_cmd table<string, HL.Dispatcher>
+---@return function
+local function layoutSwitch(layout_cmd)
+  return function()
+    local ws = hl.get_active_special_workspace() or hl.get_active_workspace()
+    local cmd = ws and layout_cmd[ws.tiled_layout] or hl.dsp.no_op()
     hl.dispatch(cmd)
   end
-end)
+end
+
+hl.bind(mainMod .. ' + F', layoutSwitch({
+  dwindle = hl.dsp.layout('togglesplit'),
+  master = hl.dsp.layout('swapwithmaster master'),
+}))
 
 -- notifications
 hl.bind(mainMod ..  ' + N', hl.dsp.exec_cmd('swaync-client -t'))
