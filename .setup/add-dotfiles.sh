@@ -296,3 +296,15 @@ S="$(($RUN_TIME % 60))"
 
 info "Full installation was successfull!"
 info "Total installation time: ${M}m ${S}s"
+
+# TODO: Following procedures haven't found a way to be maintained well withing this script
+#       Execute them manually afterwards
+
+# INFO: For checking out any submodules
+#       Requires an ssh key for "private" repos, which we do not have set up yet
+# git submodule update --init --recursive
+
+# INFO: AGS i
+# nix profile add 'github:aylur/ags#agsFull'
+# nix profile add --override-input astal "git+file://$HOME/git/github/Aylur/astal" 'github:aylur/ags/v3.1.2#agsFull' # With current fix for IPC communication
+
