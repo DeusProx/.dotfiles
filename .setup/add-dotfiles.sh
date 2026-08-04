@@ -206,7 +206,7 @@ PKG_DESKTOP=(
   # xwaylandvideobridge # AUR; screensharing with xwayland applications
   hyprpolkitagent # polkit auth agent; controlls system privileges
 
-  hypridle
+  hypridle # idle behaviour
   hyprlock
 
   # INFO: for rebuilding hyprpm at a later stage
@@ -215,7 +215,6 @@ PKG_DESKTOP=(
   cpio
 
   fuzzel # launcher
-  hypridle # idle behaviour
   waybar # topbar; will be replaced by AGS
   # aylurs-gtk-shell # AUR package; rather install manually via nix; see bottom
   network-manager-applet # nm-applet
@@ -370,6 +369,7 @@ sudo systemctl enable --now sshd
 # Consider adding yourself to the games group to make this work by issuing: usermod -a -G games
 
 sudo systemctl enable --now sddm
+sudo systemctl enable --now --user hypridle.service
 
 # TODO
 sudo systemctl enable --now udisks2
