@@ -124,32 +124,71 @@ PKG_SYSTEM=(
 
   fwupd # updating firmware
 
+  # INFO: secrets
+  libsecret
+  gnome-keyring
+  openssh
+
+  # INFO: shell
   zsh
 
+  # INFO: system resource management
   fastfetch
+  lshw
+  dmidecode # helpful to get info about memory and stuff
   htop
   btop
   nvtop
   amdgpu_top
+  brightnessctl
+  nvme-cli
+  perf
 
+  # INFO: network
+  dnsmasq
+  openvpn
+  iproute2
+  wakeonlan
+  ethtools
+  inetutils # telnet, ping, ...
+  bind # nslookup, dig, host
+  ldns # drill, modern alternative to dig
+  tcpdump
+  nmap    # bins: ncat, nmap, nping
+
+  # INFO: web
   curl
   wget
 
-  net-tools # ifconfig, ...
-  inetutils # telnet, ping, ...
-  brightnessctl
-  nvme-cli
-
+  # INFO: font
   font-manager
   ttf-firacode-nerd
   noto-fonts
   noto-fonts-cjk
   noto-fonts-emoji
   noto-fonts-extra
+
+  zip
+  unzip
+  7zip
 )
 
 PKG_AI=(
   ollama
+  ollama-rocm
+  claude-code
+)
+
+PKG_VIRT=(
+  docker
+  docker-compose
+  docker-buildx # TODO: Is this really needed?
+  iptables # Seems to be needed to run docker daemon since iptables is not enough
+  # INFO: from https://gist.github.com/diffficult/cb8c385e646466b2a3ff129ddb886185
+  virt-manager
+  libvirt
+  qemu-full
+  lxc
 )
 
 PKG_DESKTOP=(
@@ -159,7 +198,7 @@ PKG_DESKTOP=(
   qt5-wayland
   qt6-wayland
 
-  # https://wiki.archlinux.org/title/XDG_Desktop_Portal
+  # INFO: https://wiki.archlinux.org/title/XDG_Desktop_Portal
   # Also see ~/.config/xdg-desktop-portal/hyprland-portals.conf
   xdg-desktop-portal-hyprland
   xdg-desktop-portal-gtk
@@ -170,35 +209,46 @@ PKG_DESKTOP=(
   hypridle
   hyprlock
 
-  # for rebuilding hyprpm at a later stage
+  # INFO: for rebuilding hyprpm at a later stage
   cmake
   meson
   cpio
 
   fuzzel # launcher
   hypridle # idle behaviour
-  waybar # topbar
+  waybar # topbar; will be replaced by AGS
+  # aylurs-gtk-shell # AUR package; rather install manually via nix; see bottom
   network-manager-applet # nm-applet
+  networkmanager-openvpn
 
   swaybg # background
   swaync # notification
-  hyprshot # screenshots
 
-  # file manager with plugins
+  # INFO: file manager with plugins
   thunar
+  thunar-volman        # automatic volume management
+  thunar-shares-plugin # volume/directory share via samba
+  gvfs                 # gnome virtual filesysytem
+  gvfs-mtp             # media transfer protocol
+  gvfs-gphoto2         # picture transfer protocol
+  gvfs-smb             # windows file shares
+  sambda
   thunar-archive-plugin
+  xarchiver
   thunar-media-tags-plugin
-  thunar-shares-plugin
-  thunar-volman
+  tumbler
+  ffmpegthumbnailer
 
-  # screenshots + screensharing deps
+  # INFO: screenshots
+  hyprshot
   grim
   slurp
-)
 
-PKG_NVIM=(
-  nvim
-  tree-sitter-cli
+  # INFO: system management
+  seahorse              # secrets management
+  power-profiles-daemon # provides powerprofilesctl
+  pavucontrol           # gui for (pulse) audio control
+  blueman
 )
 
 PKG_DEV=(
@@ -208,7 +258,6 @@ PKG_DEV=(
   git
   git-lfs
   github-cli
-  openssh
 
   sl
   tmux
@@ -224,12 +273,50 @@ PKG_DEV=(
   devtools
   moreutils # e.g. ts which transforms timestamps
   caddy # local server; subdomain support
+
+  # INFO: Text Editor
+  code
+  nvim
+  tree-sitter-cli
+
+  # INFO: programming
+  texlive
+  typst
+  # rustup # install rust via toolchain; both already installed for paru & dotfiles
+  mold
+  rust-analyzer
+  cargo-asm
+  python
+  python-pip
+  python-venv
+  python-scipy
+
+  # INFO: cloud
+  aws-cli-v2
+
+  # INFO: documents
+  qpdf # merge pdfs etc
+
+  # INFO: database
+  dbeaver
+  postgresql
 )
 
 # user tools, but desktop
 PKG_APPS=(
-  google-chrome
-  google-chrome-dev
+  google-chrome     # AUR
+  google-chrome-dev # AUR
+
+  libreoffice-still
+  evince # document (e.g. pdf) viewer
+
+  # INFO: image viewer
+  imv
+  feh
+  # nsxiv # This opens as floating window as default
+
+  vlc
+  vlc-plugin-all
 
   inkscape
   gimp
@@ -252,35 +339,19 @@ PKG_GAMING=(
   gamescope
   gamemode
   mangohud
+  proton-ge-custom-bin
 )
 
-PKG_OTHERS=(
-  texlive
-
-  # from https://gist.github.com/diffficult/cb8c385e646466b2a3ff129ddb886185
-  virt-manager
-  libvirt
-  qemu-full
-  lxc
-  dnsmasq
-  dmidecode
-
-  dbeaver
-  postgresql
-)
-
-paru -Syu --noconfirm --needed ${PKG_VM[@]} ${PKG_SYSTEM[@]} ${PKG_AI[@]} ${PKG_DESKTOP[@]} ${PKG_NVIM[@]} ${PKG_DEV[@]} ${PKG_APPS[@]} ${PKG_GAMING[@]} ${PKG_OTHERS[@]}
+paru -Syu --noconfirm --needed ${PKG_VM[@]} ${PKG_VIRT} ${PKG_SYSTEM[@]} ${PKG_AI[@]} ${PKG_DESKTOP[@]} ${PKG_DEV[@]} ${PKG_APPS[@]} ${PKG_GAMING[@]}}
 info "installed packages"
 
+# TODO: Separate into own scripts?
 info "activating packages"
 sudo systemctl daemon-reload
 sudo chsh -s /bin/zsh $(whoami)
-sudo systemctl enable sddm
 sudo systemctl enable --now linux-modules-cleanup.service
 
 sudo systemctl enable --now --user hyprpolkitagent.service
-
-sudo systemctl enable --now --user ssh-agent.service
 
 sudo sed -i 's/# ParallelDownloads = [0-9]*/ParallelDownloads = 20/' /etc/pacman.conf
 # sudo systemctl enable --now reflector # INFO: We currently only want to use reflector manually
@@ -288,6 +359,27 @@ sudo sed -i 's/# ParallelDownloads = [0-9]*/ParallelDownloads = 20/' /etc/pacman
 sudo usermod -aG libvirt $(whoami)
 sudo systemctl enable --now libvirtd
 
+# TODO: If installed lact
+sudo systemctl enable --now lactd
+
+sudo systemctl enable --now --user ssh-agent.service
+sudo systemctl enable --now sshd
+
+# TODO: Check if we want this group
+# The wine executable used by proton can automatically set the niceness of a process;
+# Consider adding yourself to the games group to make this work by issuing: usermod -a -G games
+
+sudo systemctl enable --now sddm
+
+# TODO
+sudo systemctl enable --now udisks2
+sudo usermod -aG storage $USER
+
+
+# TODO: Find other way for username. Is the username command working here?
+sudo usermod -aG docker $USER
+
+sudo usermod -aG input $USER
 
 END_TIME=$(date +%s)
 RUN_TIME=$(($END_TIME - $START_TIME))
