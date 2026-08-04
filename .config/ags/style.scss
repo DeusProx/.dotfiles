@@ -1,0 +1,86 @@
+// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
+// $fg-color: #{"@theme_fg_color"};
+// $bg-color: #{"@theme_bg_color"};
+
+// css vars do not work everywhere with ags
+// use sass variables instead
+$bg:   rgb( 31  31  40 / 0.85);
+$cyan: rgb( 51 204 255 / 0.93);
+$mint: rgb(  0 255 153 / 0.93);
+$warn: rgb(255  40  40 / 0.33);
+$text: color-mix(in srgb, $mint 50%, white 50%);
+
+
+* {
+  color: $text;
+  border: none;
+  font-size: 10.5pt;
+  font-family: monospace;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+window.bar {
+  margin: 6px 6px 0 6px;
+
+  .module {
+    background: $bg;
+    border-radius: 16px;
+    padding: 2px;
+  }
+  .module > * {
+    padding: 0 8px;
+    border-radius: 16px;
+    border: 2px solid transparent;
+  }
+  .module > *.active {
+    background-clip: padding-box, border-box;
+    background-origin: border-box;
+    background-image:
+      linear-gradient(
+        135deg,
+        rgba($bg, 20%),
+        rgba($bg, 60%),
+        rgba($bg, 90%),
+        rgba($bg, 60%),
+        rgba($bg, 20%),
+      ),
+      linear-gradient(135deg, rgba($cyan, 0.9), rgba($mint, 0.9));
+  }
+  .module > *:not(:last-child) {
+    margin-right: -3px;
+  }
+  .module > *:not(:first-child) {
+    margin-left:  -3px;
+  }
+    // background: linear-gradient(-45deg, red, green);
+    // background-size: 400% 400%;
+    // animation: gradient 15s ease infinite;
+}
+
+.background {
+  background: $bg;
+  border-radius: 16px;
+  margin: 12px;
+  padding: 6px;
+}
+// .calender {
+//   background: $bg;
+//   padding: 6px;
+// }
+
+.animated {
+    animation: gradient 5s ease infinite;
+    background-size: 400% 400%;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 50% 100%;
+	}
+}
+
