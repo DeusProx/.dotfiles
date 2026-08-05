@@ -26,6 +26,11 @@ startup_mode = 'Maximized'
 [keyboard]
 
 [[keyboard.bindings]]
+key = "Insert"
+mods = "Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
 action = 'Minimize'
 key = 'F9'
 

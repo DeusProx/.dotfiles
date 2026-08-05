@@ -88,7 +88,6 @@ hl.env('HYPRCURSOR_SIZE', '24')
 
 --- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 hl.on('hyprland.start', function ()
-
   -- TODO: Check if necessary
   -- Startup
   -- for XDPH
@@ -115,6 +114,9 @@ hl.on('hyprland.start', function ()
   hl.exec_cmd('nm-applet') -- networking
   -- hl.exec_cmd('waybar')    -- system bar
 
+  -- clipboard
+  hl.exec_cmd('wl-paste --type text --watch cliphist store')
+  hl.exec_cmd('wl-paste --type image --watch cliphist store')
 end)
 
 -----------------------
@@ -284,12 +286,30 @@ local moveMod = 'SHIFT'
 -- common
 hl.bind(mainMod .. ' + ' .. moveMod .. ' + ESCAPE', hl.dsp.exec_cmd('systemctl suspend'))
 hl.bind(mainMod .. ' + Q', hl.dsp.window.close())                      -- [Q]uit
-hl.bind(mainMod .. ' + V', hl.dsp.window.float({ action = 'toggle' })) -- [V]loating ;)
+hl.bind(mainMod .. ' + ' .. moveMod .. ' + V', hl.dsp.window.float({ action = 'toggle' })) -- [V]loating ;)
 hl.bind(mainMod .. ' + P', hl.dsp.window.pin())                        -- [P]in
 
 -- apps
 hl.bind(mainMod .. ' + T', hl.dsp.exec_cmd(terminal))     -- [T]erminal
 hl.bind(mainMod .. ' + SPACE', hl.dsp.exec_cmd(launcher)) -- '[SPACE]'-laucher
+
+-- clipboard
+local function fuzzyClipboard()
+  hl.exec_cmd([[
+    bash -c '
+      wl-copy() {
+        $(which wl-copy) "$@" &&
+          hyprctl dispatch "hl.dsp.send_shortcut({
+            mods = \"SHIFT\",
+            key = \"INSERT\"
+          })"
+      }
+
+      source "$HOME/.local/bin/cliphist-fuzzel-img"
+    '
+  ]])
+end
+hl.bind(mainMod .. ' + V', fuzzyClipboard, { description = "Clipboard history" })
 
 ---Selects a dispatcher based on the active workspace's tiled layout.
 ---@param layout_cmd table<string, HL.Dispatcher>

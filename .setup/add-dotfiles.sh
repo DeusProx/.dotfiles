@@ -215,6 +215,7 @@ PKG_DESKTOP=(
   cpio
 
   fuzzel # launcher
+  cliphist #clipboard
   waybar # topbar; will be replaced by AGS
   # aylurs-gtk-shell # AUR package; rather install manually via nix; see bottom
   network-manager-applet # nm-applet
