@@ -294,6 +294,8 @@ hl.bind(mainMod .. ' + T', hl.dsp.exec_cmd(terminal))     -- [T]erminal
 hl.bind(mainMod .. ' + SPACE', hl.dsp.exec_cmd(launcher)) -- '[SPACE]'-laucher
 
 -- clipboard
+-- INFO: You can update the required script with; it's checked into the dotfiles
+-- `curl -L https://raw.githubusercontent.com/sentriz/cliphist/master/contrib/cliphist-fuzzel-img -o ~/.local/bin/cliphist-fuzzel-img`
 local function fuzzyClipboard()
   hl.exec_cmd([[
     bash -c '
@@ -311,9 +313,9 @@ local function fuzzyClipboard()
 end
 hl.bind(mainMod .. ' + V', fuzzyClipboard, { description = "Clipboard history" })
 
----Selects a dispatcher based on the active workspace's tiled layout.
----@param layout_cmd table<string, HL.Dispatcher>
----@return function
+--- Selects a dispatcher based on the active workspace's tiled layout.
+--- @param layout_cmd table<string, HL.Dispatcher>
+--- @return function
 local function layoutSwitch(layout_cmd)
   return function()
     local ws = hl.get_active_special_workspace() or hl.get_active_workspace()
