@@ -439,6 +439,11 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    match = { class = ".*" },
+    idle_inhibit = "fullscreen",
+})
+
+hl.window_rule({
   match = { class = '^(xdg-desktop-portal-.*)$' },
   float = true,
   center = true,
