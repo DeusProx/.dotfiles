@@ -1,0 +1,68 @@
+#!/usr/bin/env zsh
+
+zmodload zsh/parameter
+
+mode="$1"
+script="${2:A}"
+shift 2
+
+case "$mode" in
+    run)
+        fn="$1"
+        shift
+        args=("$@")
+        ;;
+esac
+
+
+# Do not expose shdb's arguments to the target.
+set --
+
+
+_shdb_is_function_definition() {
+    local cmd="$ZSH_DEBUG_CMD"
+
+    [[ "$cmd" =~ '^[[:space:]]*function[[:space:]]+[^[:space:](){};]+([[:space:]]*\(\))?[[:space:]]*\{' ]] ||
+    [[ "$cmd" =~ '^[[:space:]]*[^[:space:](){};]+[[:space:]]*\(\)[[:space:]]*\{' ]]
+}
+
+TRAPDEBUG() {
+    if (( ${funcstack[(Ie)$script]} )); then
+        # Allow function definitions.
+        # Skip all other top-level commands.
+        _shdb_is_function_definition || setopt ERR_EXIT
+    fi
+}
+
+source "$script"
+
+unfunction TRAPDEBUG
+
+
+case "$mode" in
+    functions)
+        for fn in ${(k)functions}; do
+            if [[ "${functions_source[$fn]-}" == "$script" ]]; then
+                print -r -- "$fn"
+            fi
+        done
+        ;;
+
+
+    run)
+        if (( !$+functions[$fn] )) ||
+           [[ "${functions_source[$fn]-}" != "$script" ]]; then
+            print -u2 -- "error: unknown function: $fn"
+            exit 1
+        fi
+
+        "$fn" "${args[@]}"
+        ;;
+
+
+    *)
+        print -u2 -- "error: invalid mode: $mode"
+        exit 1
+        ;;
+esac
+

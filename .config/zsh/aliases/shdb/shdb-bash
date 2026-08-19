@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+mode="$1"
+script="$(realpath -- "$2")"
+shift 2
+
+case "$mode" in
+    run)
+        fn="$1"
+        shift
+        args=("$@")
+        ;;
+esac
+
+
+# Do not expose shdb's arguments to the target.
+set --
+
+
+# Parse the target and define its functions, but skip commands
+# executed at the top level of the target script.
+shopt -s extdebug
+
+_shdb_debug() {
+    [[ "${BASH_SOURCE[1]-}" != "$script" ]]
+}
+
+trap _shdb_debug DEBUG
+
+source "$script"
+
+trap - DEBUG
+unset -f _shdb_debug
+
+
+case "$mode" in
+    functions)
+        while read -r _ _ fn; do
+            read -r name line source < <(declare -F "$fn")
+
+            if [[ "$source" == "$script" ]]; then
+                printf '%s\n' "$fn"
+            fi
+        done < <(declare -F)
+        ;;
+
+
+    run)
+        if ! declare -F "$fn" >/dev/null; then
+            echo "error: unknown function: $fn" >&2
+            exit 1
+        fi
+
+        read -r name line source < <(declare -F "$fn")
+
+        if [[ "$source" != "$script" ]]; then
+            echo "error: unknown function: $fn" >&2
+            exit 1
+        fi
+
+        shopt -u extdebug
+
+        "$fn" "${args[@]}"
+        ;;
+
+
+    *)
+        echo "error: invalid mode: $mode" >&2
+        exit 1
+        ;;
+esac
+
