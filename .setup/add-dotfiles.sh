@@ -129,6 +129,17 @@ PKG_SYSTEM=(
 
   nfs-utils # remote mounting disks
 
+  # INFO: Printing & Scanning
+  cups
+  cups-browsed
+  nss-mdns
+  sane
+  sane-airscan
+  simple-scan
+  skanpage
+  tesseract-data-deu
+  tesseract-data-eng
+
   # INFO: secrets
   libsecret
   gnome-keyring
@@ -377,11 +388,19 @@ sudo systemctl enable --now sshd
 # TODO: Check if we want this group
 # The wine executable used by proton can automatically set the niceness of a process;
 # Consider adding yourself to the games group to make this work by issuing: usermod -a -G games
+usermod -a -G games
 
 sudo systemctl enable --now sddm
 sudo systemctl enable --now --user hypridle.service
 
-# TODO
+# INFO: Print service
+sudo systemctl enable --now systemd-resolved
+sudo systemctl enable --now avahi-daemon.service # implements "Bonjour" & provides mDNS(multicast DNS)/DNS-SD(DNS Discovery Service)
+sudo systemctl enable --now cups.service
+sudo systemctl enable --now cups-browsed
+
+
+# TODO: ??
 sudo systemctl enable --now udisks2
 sudo usermod -aG storage $USER
 
