@@ -330,8 +330,8 @@ hl.bind(mainMod .. ' + F', layoutSwitch({
 }))
 
 -- Master Layout bindings
-hl.bind(mainMod .. ' + O', hl.dsp.layout('rollprev'))
-hl.bind(mainMod .. ' + P', hl.dsp.layout('rollnext'))
+hl.bind(mainMod .. ' + O', layoutSwitch({ master = hl.dsp.layout('rollprev') }))
+hl.bind(mainMod .. ' + P', layoutSwitch({ master = hl.dsp.layout('rollnext') }))
 
 -- notifications
 hl.bind(mainMod ..  ' + N', hl.dsp.exec_cmd('swaync-client -t'))
