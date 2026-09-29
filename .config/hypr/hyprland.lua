@@ -313,6 +313,33 @@ local function fuzzyClipboard()
 end
 hl.bind(mainMod .. ' + V', fuzzyClipboard, { description = "Clipboard history" })
 
+-- TODO: With this function we started to assemble to many function and especially started to have overlapping shortcuts
+-- So we should probably switch to a leader shortcut with a submap
+local function findWindow()
+  hl.exec_cmd([[
+    choice=$(
+      hyprctl clients -j |
+        jq -r '.[] | [.workspace.name, .address, .class, (.title | gsub("[\t\n]"; " "))] | @tsv' |
+        fuzzel --dmenu --only-match --with-nth='{3}  {4}  [{1}]'
+    ) || exit
+
+    workspace=$(printf '%s\n' "$choice" | cut -f1)
+    address=$(printf '%s\n' "$choice" | cut -f2)
+
+    if [ "${workspace#special:}" != "$workspace" ]; then
+      hyprctl monitors -j |
+        jq -e --arg ws "$workspace" 'any(.[]; .specialWorkspace.name == $ws)' >/dev/null ||
+        hyprctl dispatch "hl.dsp.workspace.toggle_special(\"${workspace#special:}\")"
+    else
+      hyprctl dispatch "hl.dsp.focus({ workspace = \"$workspace\" })"
+    fi
+
+    hyprctl dispatch "hl.dsp.focus({ window = \"address:$address\" })"
+  ]])
+end
+hl.bind(mainMod .. ' + F', findWindow, { description = "Find window" })
+
+
 --- Selects a dispatcher based on the active workspace's tiled layout.
 --- @param layout_cmd table<string, HL.Dispatcher>
 --- @return function
@@ -324,7 +351,7 @@ local function layoutSwitch(layout_cmd)
   end
 end
 
-hl.bind(mainMod .. ' + F', layoutSwitch({
+hl.bind(mainMod .. ' + S', layoutSwitch({
   dwindle = hl.dsp.layout('togglesplit'),
   master = hl.dsp.layout('swapwithmaster master'),
 }))
@@ -374,7 +401,7 @@ end
 
 local special_ws_keybinds = {
     -- for special workspaces
-  { key = 'S', target = 'terminal'      },
+  { key = 'D', target = 'terminal'      },
   { key = 'I', target = 'incognito'     },
   { key = 'M', target = 'music'         },
   { key = 'C', target = 'communication' },
