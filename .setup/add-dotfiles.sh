@@ -292,6 +292,7 @@ PKG_DEV=(
   devtools
   moreutils # e.g. ts which transforms timestamps
   caddy # local server; subdomain support
+  bind # dns stuff
 
   # INFO: Text Editor
   code
