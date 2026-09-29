@@ -110,6 +110,9 @@ info "Install Nix"
 paru -S nix
 sudo systemctl enable --now nix-daemon.service
 
+info "Install flatpak"
+paru -S flatpak
+
 info "Installing packages"
 
 PKG_VM=(
@@ -344,6 +347,7 @@ PKG_GAMING=(
 )
 
 paru -Syu --noconfirm --needed ${PKG_VM[@]} ${PKG_VIRT} ${PKG_SYSTEM[@]} ${PKG_AI[@]} ${PKG_DESKTOP[@]} ${PKG_DEV[@]} ${PKG_APPS[@]} ${PKG_GAMING[@]}}
+flatpak install flathub com.orcaslicer.OrcaSlicer
 info "installed packages"
 
 # TODO: Separate into own scripts?
