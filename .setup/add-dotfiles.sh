@@ -197,6 +197,7 @@ PKG_DESKTOP=(
   hyprland # compositor
   qt5-wayland
   qt6-wayland
+  qt6ct
 
   # INFO: https://wiki.archlinux.org/title/XDG_Desktop_Portal
   # Also see ~/.config/xdg-desktop-portal/hyprland-portals.conf
