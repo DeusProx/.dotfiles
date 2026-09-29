@@ -174,6 +174,8 @@ PKG_SYSTEM=(
   zip
   unzip
   7zip
+  tar
+  tar-scripts
 )
 
 PKG_AI=(
