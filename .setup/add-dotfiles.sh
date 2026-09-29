@@ -127,6 +127,8 @@ PKG_SYSTEM=(
 
   fwupd # updating firmware
 
+  nfs-utils # remote mounting disks
+
   # INFO: secrets
   libsecret
   gnome-keyring
@@ -407,4 +409,3 @@ info "Total installation time: ${M}m ${S}s"
 # INFO: AGS i
 # nix profile add 'github:aylur/ags#agsFull'
 # nix profile add --override-input astal "git+file://$HOME/git/github/Aylur/astal" 'github:aylur/ags/v3.1.2#agsFull' # With current fix for IPC communication
-
