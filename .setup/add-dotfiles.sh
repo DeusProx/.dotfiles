@@ -109,6 +109,7 @@ nvm use --lts
 info "Install Nix"
 paru -S nix
 sudo systemctl enable --now nix-daemon.service
+nix profile add "path:$HOME/.config/nixpkgs" # TODO: Check if that works
 
 info "Install flatpak"
 paru -S flatpak
@@ -364,6 +365,7 @@ PKG_GAMING=(
 
 paru -Syu --noconfirm --needed ${PKG_VM[@]} ${PKG_VIRT} ${PKG_SYSTEM[@]} ${PKG_AI[@]} ${PKG_DESKTOP[@]} ${PKG_DEV[@]} ${PKG_APPS[@]} ${PKG_GAMING[@]}}
 flatpak install flathub com.orcaslicer.OrcaSlicer
+nix profile upgrade nixpkgs
 info "installed packages"
 
 # TODO: Separate into own scripts?
@@ -425,7 +427,3 @@ info "Total installation time: ${M}m ${S}s"
 # INFO: For checking out any submodules
 #       Requires an ssh key for "private" repos, which we do not have set up yet
 # git submodule update --init --recursive
-
-# INFO: AGS i
-# nix profile add 'github:aylur/ags#agsFull'
-# nix profile add --override-input astal "git+file://$HOME/git/github/Aylur/astal" 'github:aylur/ags/v3.1.2#agsFull' # With current fix for IPC communication
