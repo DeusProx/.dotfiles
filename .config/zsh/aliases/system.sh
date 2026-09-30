@@ -11,5 +11,5 @@ alias debug-waybar='env GTK_DEBUG=interactive waybar'
 
 # TODO: Not necessary once Hot Module Replacement hits
 # See https://github.com/Aylur/ags/issues/724
-alias watch-ags='find ~/.config/ags -type f | entr -r zsh -c "ags run"'
+alias watch-ags='find ~/.config/ags -type f | entr -n -r zsh -c "ags run"'
 
