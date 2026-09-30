@@ -112,7 +112,7 @@ hl.on('hyprland.start', function ()
 
   -- environment apps & widgets
   hl.exec_cmd('nm-applet') -- networking
-  -- hl.exec_cmd('waybar')    -- system bar
+  hl.exec_cmd('watch-ags') -- system bar
 
   -- clipboard
   hl.exec_cmd('wl-paste --type text --watch cliphist store')
