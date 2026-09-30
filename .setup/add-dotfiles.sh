@@ -379,24 +379,18 @@ sudo systemctl enable --now --user hyprpolkitagent.service
 sudo sed -i 's/# ParallelDownloads = [0-9]*/ParallelDownloads = 20/' /etc/pacman.conf
 # sudo systemctl enable --now reflector # INFO: We currently only want to use reflector manually
 
-sudo usermod -aG libvirt $(whoami)
+sudo usermod -aG libvirt "$(whoami)"
 sudo systemctl enable --now libvirtd
 
-# TODO: If installed lact
 sudo systemctl enable --now lactd
 
 sudo systemctl enable --now --user ssh-agent.service
 sudo systemctl enable --now sshd
 
-# TODO: Check if we want this group
-# The wine executable used by proton can automatically set the niceness of a process;
-# Consider adding yourself to the games group to make this work by issuing: usermod -a -G games
-usermod -a -G games
-
 sudo systemctl enable --now sddm
 sudo systemctl enable --now --user hypridle.service
 
-# INFO: Print service
+# INFO: Print services
 sudo systemctl enable --now systemd-resolved
 sudo systemctl enable --now avahi-daemon.service # implements "Bonjour" & provides mDNS(multicast DNS)/DNS-SD(DNS Discovery Service)
 sudo systemctl enable --now cups.service
@@ -407,6 +401,9 @@ sudo systemctl enable --now udisks2
 
 # INFO: Docker without sudo
 sudo usermod -aG docker "$(whoami)"
+
+# INFO: Set niceness of game process via wine inside proton
+sudo usermod -aG games "$(whoami)"
 
 END_TIME=$(date +%s)
 RUN_TIME=$(($END_TIME - $START_TIME))
