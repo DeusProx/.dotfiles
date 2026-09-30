@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "setup": "ags types -u -d ."
+  },
   "dependencies": {
     "ags": "*",
     "gnim": "*"
