@@ -3,6 +3,7 @@ import { Astal, Gtk, Gdk } from "ags/gtk4"
 import { createBinding, For  } from "gnim";
 import { WorkspaceModule } from "./workspaces";
 import { Clock } from "./clock";
+import { Icon } from './icons'
 
 // Install ags with newer astal declarations:
 // nix profile add --override-input astal github:aylur/astal 'github:aylur/ags/v3.1.2#agsFull'
@@ -41,7 +42,7 @@ function Controls() {
       <ScreenBrightness />
       <PowerProfile />
       {/* <WLAN /> */}
-      {/* <Battery /> */}
+      <Battery />
       <TrayServices />
       <Suspend />
     </box>
@@ -127,14 +128,24 @@ function ScreenBrightness() {
 //   return <Icon name='network-wireless-symbolic' />
 // }
 
-// TODO: We need that for the laptop
-// function Battery() {
-//   return <Icon name='battery' />
-// }
+import AstalBattery from "gi://AstalBattery"
+const battery = AstalBattery.get_default()
+
+function Battery() {
+    const icon = createBinding(battery, "iconName")
+    const percentage = createBinding(battery, "percentage")
+      .as(p => `${Math.round(p * 100)}%`)
+
+    return (
+        <box spacing={6}>
+          <Icon name={icon} />
+          <label label={percentage} />
+        </box>
+    )
+}
 
 import AstalTray from "gi://AstalTray"
 import { execAsync } from "ags/process"
-import { Icon } from './icons'
 
 function TrayServices() {
   const tray = AstalTray.get_default()
