@@ -7,6 +7,7 @@
 
     ags = {
       url = "github:aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
 
       # INFO: Get a newer astal commit. the one in ags is old as fuck
       inputs.astal = {
