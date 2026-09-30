@@ -402,16 +402,11 @@ sudo systemctl enable --now avahi-daemon.service # implements "Bonjour" & provid
 sudo systemctl enable --now cups.service
 sudo systemctl enable --now cups-browsed
 
-
-# TODO: ??
+# INFO: Disk management daemon
 sudo systemctl enable --now udisks2
-sudo usermod -aG storage $USER
 
-
-# TODO: Find other way for username. Is the username command working here?
-sudo usermod -aG docker $USER
-
-sudo usermod -aG input $USER
+# INFO: Docker without sudo
+sudo usermod -aG docker "$(whoami)"
 
 END_TIME=$(date +%s)
 RUN_TIME=$(($END_TIME - $START_TIME))
@@ -427,3 +422,4 @@ info "Total installation time: ${M}m ${S}s"
 # INFO: For checking out any submodules
 #       Requires an ssh key for "private" repos, which we do not have set up yet
 # git submodule update --init --recursive
+
