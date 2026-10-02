@@ -1,15 +1,9 @@
 import app from "ags/gtk4/app"
 import { Astal, Gtk, Gdk } from "ags/gtk4"
-import { createBinding, For  } from "gnim";
+import { createBinding, For } from "gnim";
 import { WorkspaceModule } from "./workspaces";
 import { Clock } from "./clock";
 import { Icon } from './icons'
-
-// Install ags with newer astal declarations:
-// nix profile add --override-input astal github:aylur/astal 'github:aylur/ags/v3.1.2#agsFull'
-//
-// Install ags with local astal repo (e.g. for fixes):
-// nix profile add --override-input astal "git+file://$HOME/git/github/Aylur/astal" 'github:aylur/ags/v3.1.2#agsFull'
 
 export default function Bar(monitor: Gdk.Monitor) {
   const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
