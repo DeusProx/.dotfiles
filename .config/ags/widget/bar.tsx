@@ -133,17 +133,18 @@ const battery = AstalBattery.get_default()
 
 function Battery() {
   const isPresent = createBinding(battery, "isPresent")
-  const icon = createBinding(battery, "iconName")
+  const iconName = createBinding(battery, "iconName")
   const percentage = createBinding(battery, "percentage")
     .as(p => `${Math.round(p * 100)}%`)
 
   return (
-    isPresent() && (
-      <box spacing={6}>
-        <Icon name={icon} />
-        <label label={percentage} />
-      </box>
-    )
+    isPresent()
+      ? (
+        <box spacing={6}>
+          <Icon name={iconName} />
+          <label label={percentage} />
+        </box>
+      ) : <></>
   )
 }
 
