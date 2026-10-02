@@ -39,7 +39,7 @@ function Controls() {
     <box class="module">
       <Audio type="out"/>
       <Audio type="in"/>
-      <ScreenBrightness />
+      <Brightness />
       <Battery />
       {/* <WLAN /> */}
       <PowerProfile />
@@ -112,15 +112,21 @@ function PowerProfile() {
 }
 
 import AstalBrightness from "gi://AstalBrightness";
+const astalBrightness = AstalBrightness.get_default();
 
-function ScreenBrightness() {
-  const brightnessValu = createBinding(AstalBrightness.get_default(), "screen", "brightness")
+function Brightness() {
+  const isPresent = createBinding(astalBrightness, "backlights", "devices")
+    .as(backlights => backlights.length > 0)
+  const brightness = createBinding(astalBrightness, "screen", "brightness")
     .as(v => `${Math.round(v * 100)}%`)
-    // .as(v => `${v}`)
 
-  return brightnessValu() != "-100%"
-    ? <label label={brightnessValu}></label>
-    : <></>
+  return isPresent()
+    ? (
+      <box spacing={6}>
+          <Icon name="display-brightness-symbolic" />
+          <label label={brightness}></label>
+      </box>
+    ) : <></>
 }
 
 // TODO: We currently still rely on NetworkManager; This would probably be cooler
