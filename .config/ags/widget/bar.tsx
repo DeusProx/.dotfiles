@@ -40,9 +40,9 @@ function Controls() {
       <Audio type="out"/>
       <Audio type="in"/>
       <ScreenBrightness />
-      <PowerProfile />
-      {/* <WLAN /> */}
       <Battery />
+      {/* <WLAN /> */}
+      <PowerProfile />
       <TrayServices />
       <Suspend />
     </box>
