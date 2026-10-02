@@ -56,7 +56,7 @@ type AudioContext = { type: "out" | "in" }
 function Audio(ctx: AudioContext) {
   const name = ctx.type == "out" ? "default_speaker" : "default_microphone"
 
-  const icon = createBinding(wp, name, "volume_icon")
+  const iconName = createBinding(wp, name, "volume_icon")
   const volume = createBinding(wp, name, "volume")
     .as(volume => `${Math.round(volume * 100)}%`)
 
@@ -65,9 +65,9 @@ function Audio(ctx: AudioContext) {
       onClicked={() => wp[name].mute = !wp[name].mute}
       $={onScrolled(volume => wp[name].set_volume(wp[name].volume - (volume * 5) / 100))}
     >
-      <box>
+      <box spacing={6}>
+        <Icon name={iconName} />
         <label label={volume} />
-        <image iconName={icon} />
       </box>
     </button>
   )
@@ -98,7 +98,7 @@ const profiles = powerprofiles.get_profiles()
   .map(profile => profile.profile)
 
 function PowerProfile() {
-  const icon = createBinding(powerprofiles, "icon_name")
+  const iconName = createBinding(powerprofiles, "icon_name")
   function cycle() {
     const id = profiles.indexOf(powerprofiles.get_active_profile());
     powerprofiles.set_active_profile(profiles[(id + 1) % profiles.length]);
@@ -106,7 +106,7 @@ function PowerProfile() {
 
   return (
     <button onClicked={cycle}>
-      <image iconName={icon} />
+      <Icon name={iconName} />
     </button>
   )
 }
