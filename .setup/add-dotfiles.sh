@@ -144,10 +144,11 @@ PKG_SYSTEM=(
   # INFO: secrets
   libsecret
   gnome-keyring
-  openssh
 
   # INFO: shell
   zsh
+  openssh
+  mosh
 
   # INFO: system resource management
   fastfetch
