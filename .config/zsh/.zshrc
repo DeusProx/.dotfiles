@@ -8,10 +8,24 @@ export PATH="$PATH:/home/deusprox/.local/bin"
 bindkey -v
 
 # set up the prompt
-autoload -Uz promptinit
-promptinit
-prompt adam1
-RPS1='%D{%H:%M:%S}'
+PS1='%F{yellow}[%B%D{%y}%b-%B%D{%m}%b-%B%D{%d} %D{%H}%b:%B%D{%M}%b:%B%D{%S}%b]%f %B%F{cyan}%n%F{blue}@%F{cyan}%m%f %F{green}%~%f%b'$'\n''%F{white}%#%f '
+autoload -Uz add-zsh-hook
+
+# update timestamps when running prompts
+accept-line-with-timestamp() {
+  zle reset-prompt
+  zle -R
+  zle .accept-line
+}
+zle -N accept-line accept-line-with-timestamp
+
+# adds empty line only after prompts
+_prompt_seen=0
+prompt-spacing() {
+  (( _prompt_seen )) && print
+  _prompt_seen=1
+}
+add-zsh-hook precmd prompt-spacing
 
 # INFO: see "man 1 zshoptions"
 setopt ksharrays           # arrays shall start with 0
