@@ -150,18 +150,29 @@ function Battery() {
 
 import AstalTray from "gi://AstalTray"
 import { execAsync } from "ags/process"
+import { onCleanup } from "gnim";
 
 function TrayServices() {
   const tray = AstalTray.get_default()
   const items = createBinding(tray, "items")
 
   const init = (btn: Gtk.MenuButton, item: AstalTray.TrayItem) => {
-    btn.menuModel = item.menuModel
-    btn.insert_action_group("dbusmenu", item.actionGroup)
-    item.connect("notify::action-group", () => btn.insert_action_group("dbusmenu", item.actionGroup))
-    // TODO: Should we tidy up?
-    // const handler = item.connect("notify::action-group", () => btn.insert_action_group("dbusmenu", item.actionGroup))
-    // btn.connect("destroy", () => item.disconnect(handler))
+    const popover = Gtk.PopoverMenu.new_from_model_full(
+      item.menuModel,
+      Gtk.PopoverMenuFlags.NESTED,
+    )
+    btn.set_popover(popover)
+
+    const updateActions = () => btn.insert_action_group("dbusmenu", item.actionGroup)
+    updateActions()
+
+    const modelHandler = item.connect("notify::menu-model", () => popover.set_menu_model(item.menuModel))
+    const actionHandler = item.connect("notify::action-group", updateActions)
+
+    onCleanup(() => {
+      item.disconnect(modelHandler)
+      item.disconnect(actionHandler)
+    })
   }
 
   return (
