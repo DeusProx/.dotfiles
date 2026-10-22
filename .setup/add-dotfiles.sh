@@ -169,7 +169,7 @@ PKG_SYSTEM=(
   iproute2
   wakeonlan
   ethtools
-  inetutils # telnet, ping, ...
+  openbsd-netcat
   bind # nslookup, dig, host
   ldns # drill, modern alternative to dig
   tcpdump
