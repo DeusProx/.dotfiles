@@ -125,6 +125,7 @@ PKG_SYSTEM=(
   linux-headers
   kernel-modules-hook # backups kernel on updates to keep the system running until next reboot
   reflector # gets latest mirrors sorted by speed
+  pacman-contrib
 
   fwupd # updating firmware
 
@@ -379,6 +380,8 @@ sudo systemctl enable --now --user hyprpolkitagent.service
 
 sudo sed -i 's/# ParallelDownloads = [0-9]*/ParallelDownloads = 20/' /etc/pacman.conf
 # sudo systemctl enable --now reflector # INFO: We currently only want to use reflector manually
+
+sudo systemctl enable --now paccache.timer # INFO: discards unused packages; provided by pacman-contrib
 
 sudo usermod -aG libvirt "$(whoami)"
 sudo systemctl enable --now libvirtd
