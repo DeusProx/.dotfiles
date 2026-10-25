@@ -1,6 +1,6 @@
 import app from "ags/gtk4/app"
 import { Astal, Gtk, Gdk } from "ags/gtk4"
-import { createBinding, For } from "gnim";
+import { createBinding, createComputed, For } from "gnim";
 import { WorkspaceModule } from "./workspaces";
 import { Clock } from "./clock";
 import { Icon } from './icons'
@@ -131,16 +131,36 @@ function Brightness() {
 import AstalBattery from "gi://AstalBattery"
 const battery = AstalBattery.get_default()
 
+function formatTime(seconds: number): string {
+  const hours = Math.floor(seconds / 3600)
+  const minutes = Math.floor((seconds % 3600) / 60)
+
+  return `${hours}h ${minutes}m`
+}
+
 function Battery() {
   const isPresent = createBinding(battery, "isPresent")
   const iconName = createBinding(battery, "iconName")
   const percentage = createBinding(battery, "percentage")
     .as(p => `${Math.round(p * 100)}%`)
 
+  const isCharging = createBinding(battery, "charging")
+  const timeToFull = createBinding(battery, "timeToFull")
+  const timeToEmpty = createBinding(battery, "timeToEmpty")
+
+  const tooltip = createComputed(() =>
+    isCharging()
+      ? `Until full: ${formatTime(timeToFull())}`
+      : `Until empty: ${formatTime(timeToEmpty())}`
+  )
+
   return (
     isPresent()
       ? (
-        <box spacing={6}>
+        <box
+          spacing={6}
+          tooltipText={tooltip}
+        >
           <Icon name={iconName} />
           <label label={percentage} />
         </box>
