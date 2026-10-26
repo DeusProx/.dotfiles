@@ -111,14 +111,17 @@ const astalBrightness = AstalBrightness.get_default();
 function Brightness() {
   const isPresent = createBinding(astalBrightness, "backlights", "devices")
     .as(backlights => backlights.length > 0)
-  const brightness = createBinding(astalBrightness, "screen", "brightness")
-    .as(v => `${Math.round(v * 100)}%`)
+  const brightnessValue = createBinding(astalBrightness, "screen", "brightness")
+  const brightness = brightnessValue.as(v => `${Math.round(v * 100)}%`)
 
   return isPresent()
     ? (
-      <box spacing={6}>
-          <Icon name="display-brightness-symbolic" />
-          <label label={brightness}></label>
+      <box
+        spacing={6}
+        $={onScrolled(delta => astalBrightness.get_screen().set_brightness(Math.max(0, brightnessValue() - delta * 0.05)))}
+      >
+        <Icon name="display-brightness-symbolic" />
+        <label label={brightness}></label>
       </box>
     ) : <></>
 }
