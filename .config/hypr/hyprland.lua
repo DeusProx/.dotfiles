@@ -14,6 +14,22 @@ hl.monitor({
   supports_wide_color = 1,
 })
 
+-- INFO: Workaround for manually triggering HDR for gaming
+--
+-- Proton GE HDR Auto Detection currently not working correctly but will be fixed in future
+-- See https://github.com/GloriousEggroll/proton-ge-custom/issues/838#issuecomment-6415693871
+hl.bind('ALT + H', function()
+  local monitor = hl.get_active_monitor()
+  if not monitor then return end
+
+  local hdr = monitor.cm == 'hdr' or monitor.cm == 'hdredid'
+
+  hl.monitor({
+    output = '',
+    cm = hdr and 'srgb' or 'hdr',
+  })
+end)
+
 --------------------
 --- DEFAULT APPS ---
 --------------------
