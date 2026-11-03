@@ -494,11 +494,19 @@ hl.window_rule({
   center = true,
 })
 
+-- INFO: Executes cmd, when workspace is empty
+-- Use 'special:<name>' but not 'name:<name>'.
+local function on_created_empty(workspace, cmd)
+  hl.on('workspace.created', function(ws)
+    if ws.is_empty and ws.addressable_name == workspace then
+      hl.exec_cmd(cmd, { workspace = workspace .. ' silent' })
+    end
+  end)
+end
+
 local browser_cmd = browser .. ' --profile-directory="Default" --restore-last-session'
-hl.workspace_rule({
-  workspace = 'name:browser',
-  on_created_empty = browser_cmd,
-})
+on_created_empty('browser', browser_cmd)
+
 local browser_window_rule = hl.window_rule({
   match = { class = '^(google-chrome)$' },
   workspace = 'name:browser silent',
@@ -511,10 +519,7 @@ hl.on('hyprland.start', function ()
 end)
 
 
-hl.workspace_rule({
-  workspace = 'name:gaming',
-  on_created_empty = 'steam',
-})
+on_created_empty('gaming', 'steam')
 hl.window_rule({
   match = { class = '^([Ss]team)$' },
   workspace = 'name:gaming silent'
@@ -522,16 +527,8 @@ hl.window_rule({
 hl.on('hyprland.start', function ()
   hl.exec_cmd('steam', { workspace = 'name:gaming silent' })
 end)
-
-hl.workspace_rule({
-  workspace = 'special:terminal',
-  on_created_empty = terminal,
-})
-
-hl.workspace_rule({
-  workspace = 'special:incognito',
-  on_created_empty = browser .. ' --incognito',
-})
+on_created_empty('special:terminal', terminal)
+on_created_empty('special:incognito', browser .. ' --incognito')
 
 hl.window_rule({
   match = { class = '^([dD]iscord)$' },
@@ -543,10 +540,7 @@ hl.on('hyprland.start', function ()
   hl.exec_cmd('discord', { workspace = 'special:communication silent' })
 end)
 
-hl.workspace_rule({
-  workspace = 'special:music',
-  on_created_empty = 'gtk-launch Tidal',
-})
+on_created_empty('special:music', 'gtk-launch Tidal')
 hl.on('hyprland.start', function ()
   hl.exec_cmd('gtk-launch Tidal', { workspace = 'special:music silent' })
 end)
