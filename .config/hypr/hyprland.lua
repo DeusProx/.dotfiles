@@ -249,7 +249,6 @@ hl.config({
   -- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/
   master = {
     new_status = 'master',
-    special_scale_factor = 0.8,
     mfact = 0.55,
     allow_small_split = true,
     orientation = 'center',
