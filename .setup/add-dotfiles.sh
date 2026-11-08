@@ -309,6 +309,7 @@ PKG_DEV=(
   mold
   rust-analyzer
   cargo-asm
+  upx # executable compression
   python
   python-pip
   python-venv
