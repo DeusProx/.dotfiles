@@ -341,6 +341,7 @@ PKG_APPS=(
 
   vlc
   vlc-plugin-all
+  mpv
 
   inkscape
   gimp

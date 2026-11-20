@@ -544,4 +544,5 @@ hl.on('hyprland.start', function ()
 end)
 
 require('workaroundRestoreFocus')
+require('recording')
 
